@@ -1,0 +1,17 @@
+## KIV .gitignore
+
+# git clone github:ooblog/KIV.git
+# git status
+# git push github:ooblog/KIV.git master
+# git push github:ooblog/KIV.git 20180122M233620
+# git log
+# git ls-files
+# git commit -a -m ""
+# git reset --soft HEAD^
+# git branch
+# git checkout master
+# git checkout 20180122M233620
+# git merge 20180122M233620
+# git branch -d 20180122M233620
+
+KIVmap.gnumeric
