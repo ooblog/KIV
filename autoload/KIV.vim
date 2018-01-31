@@ -61,9 +61,6 @@ function! KIVsetup(inputkey,findkey,hiraganakey,katakanakey)
         :endfor
     :endif
     call KIVpullmenu(1)
-    map <silent> <Space><Space> a
-    vmap <silent> <Space><Space> <Esc>
-    imap <silent> <Space><Space> <Esc>
     let s:KIV_menuid = 10000
     let s:KIV_menumap = "【&Kanji" . "(&K)"
     let s:KIV_menumapid = s:KIV_menuid+0
@@ -116,11 +113,13 @@ function! KIVpushmenu()
             let s:dicVchar = s:dicVchar . printf("<C-V>U%08x",char2nr(s:Vchar))
         :endfor
         let s:Mchar = s:KIV_kanmapkeysX[s:inputkey]
+        let s:Fchar = escape(substitute(s:dicchar,"|","<bar>","g"),s:KIV_menuESCs)
         execute "amenu  <silent> " . s:KIV_menumapid . "." . (s:inputkey+10) . " " . s:KIV_menumap . ".&\\" . s:Mchar . " <Plug>(KIVmap" . s:Mchar . ")"
         execute "imap <silent> <Space>" . s:KIV_inputkeys[s:inputkey] . " <C-o><Plug>(KIVmap" . s:Mchar . ")"
-        execute "imenu  <silent> " . s:KIV_menudicid . "." . (s:inputkey+10) . " " . s:KIV_menudic . ".&\\" . s:Mchar . " " . s:KIV_inputkeys[s:inputkey]
+"        execute "imenu  <silent> " . s:KIV_menudicid . "." . (s:inputkey+10) . " " . s:KIV_menudic . ".&\\" . escape(s:KIV_inputkeys[s:inputkey],s:KIV_menuESCs) . escape(s:dicchar,s:KIV_inputESCs) . " " . s:KIV_inputkeys[s:inputkey]
+"        execute "imenu  <silent> " . s:KIV_menudicid . "." . (s:inputkey+10) . " " . s:KIV_menudic . ".&" . escape(s:KIV_inputkeys[s:inputkey],s:KIV_menuESCs) . get(s:KIV_inputESCs,s:dicchar,s:dicchar) . " " . s:KIV_inputkeys[s:inputkey]
+        execute "imenu  <silent> " . s:KIV_menudicid . "." . (s:inputkey+10) . " " . s:KIV_menudic . ".&" . escape(s:KIV_inputkeys[s:inputkey],s:KIV_menuESCs) . "\\" . s:dicchar . " " . s:KIV_inputkeys[s:inputkey]
         execute "imap <silent> " . s:KIV_inputkeys[s:inputkey] . s:dicVchar
-        let s:Fchar = escape(substitute(s:dicchar,"|","<bar>","g"),s:KIV_menuESCs)
         execute "imap <silent> " . s:KIV_findkeys[s:inputkey] . " <C-o>/" . s:Fchar . "<Enter>"
     :endfor
 

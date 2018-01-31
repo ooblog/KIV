@@ -38,11 +38,11 @@ IMEを起動しないのでモード切替時に全角半角キーを押す手�
 
 ## 操作一覧予定表(ToDo)。
 
-☐&lt;Space&gt;&lt;Space&gt;	Vimの挿入モード切替  
-☐&lt;Space&gt;&lt;Enter&gt;	半角スペース入力  
-☐a-z	漢字入力([漢直鍵盤kanmap.tsf](https://github.com/ooblog/KIV3/blob/master/autoload/KIV3_kanmap.tsf "KIV3/KIV3_kanmap.tsf at master · ooblog/KIV3"))/字引項目があれば字引漢直([単漢字辞書kanchar.tsf](https://github.com/ooblog/KIV3/blob/master/autoload/KIV3_kanchar..tsf "KIV3/KIV3_kanchar..tsf at master · ooblog/KIV3"))  
-☐A-Z	一文字検索下方向(&lt;C-o&gt;/)  
-☐&lt;S-Space&gt;	一文字検索上方向(&lt;C-o&gt;?)  
+☑&lt;Space&gt;&lt;Space&gt;	Vimの挿入モード切替  
+☑&lt;Space&gt;&lt;Enter&gt;	半角スペース入力  
+☑a-z	漢字入力([漢直鍵盤kanmap.tsf](https://github.com/ooblog/KIV3/blob/master/autoload/KIV3_kanmap.tsf "KIV3/KIV3_kanmap.tsf at master · ooblog/KIV3"))/字引項目があれば字引漢直([単漢字辞書kanchar.tsf](https://github.com/ooblog/KIV3/blob/master/autoload/KIV3_kanchar..tsf "KIV3/KIV3_kanchar..tsf at master · ooblog/KIV3"))  
+☑A-Z	一文字検索下方向(&lt;C-o&gt;/)  
+☑&lt;S-Space&gt;	一文字検索上方向(&lt;C-o&gt;?)  
 ☐&lt;Space&gt;a-z	鍵盤変更/清濁変更/かなカタ変更([漢直鍵盤kanmap.tsf](https://github.com/ooblog/KIV3/blob/master/autoload/KIV3_kanmap.tsf "KIV3/KIV3_kanmap.tsf at master · ooblog/KIV3"))  
 ☐&lt;Space&gt;&lt;Tab&gt;	ひらがな鍵盤に変更([漢直鍵盤kanmap.tsf](https://github.com/ooblog/KIV3/blob/master/autoload/KIV3_kanmap.tsf "KIV3/KIV3_kanmap.tsf at master · ooblog/KIV3"))  
 ☐&lt;Space&gt;&lt;S-Tab&gt;	カタカナ鍵盤に変更([漢直鍵盤kanmap.tsf](https://github.com/ooblog/KIV3/blob/master/autoload/KIV3_kanmap.tsf "KIV3/KIV3_kanmap.tsf at master · ooblog/KIV3"))  
