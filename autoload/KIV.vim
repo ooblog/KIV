@@ -117,16 +117,18 @@ function! KIVpushmenu()
         :endfor
         let s:mapKchar = s:KIV_kanmapkeysY[s:KIV_mapkeyid/s:KIV_kanmapkeysL*len(s:KIV_kanmapkeysX)+s:inputkey]
         :if s:KIV_mapkeyid%s:KIV_kanmapkeysL == s:inputkey
-"            let s:mapKchar = s:KIV_kanmapkeysY[((s:KIV_mapkeyid/s:KIV_kanmapkeysL+1)%2)*s:KIV_kanmapkeysL+s:inputkey]
             let s:mapkeyiddaku = s:KIV_mapkeyid/s:KIV_kanmapkeysL
+"            let s:mapkeyidkata = ((s:mapkeyiddaku+1)%4)*s:KIV_kanmapkeysL+s:inputkey
 "            let s:mapkeyidkata = (s:mapkeyiddaku/2*2+(s:mapkeyiddaku+1)%2)*s:KIV_kanmapkeysL+s:inputkey
-            let s:mapkeyidkata = ((s:mapkeyiddaku+1)%4)*s:KIV_kanmapkeysL+s:inputkey
 "            :if s:KIV_mapkeyid%s:KIV_kanmapkeysL == s:KIV_mapkeyidbuf%s:KIV_kanmapkeysL
-"                let s:mapKchar = s:KIV_kanmapkeysY[(((s:mapkeyiddaku/2+1)%2)*2+s:mapkeyiddaku%2)*s:KIV_kanmapkeysL+s:inputkey]
 "                let s:mapkeyiddaku = s:mapkeyidkata/s:KIV_kanmapkeysL
-"                let s:mapkeyidkata = (((s:mapkeyiddaku/2+1)%2)*2+s:mapkeyiddaku%2)*s:KIV_kanmapkeysL+s:inputkey
+"                let s:mapkeyidkata = (((s:mapkeyiddaku/2+1)%2)*2+(s:mapkeyiddaku+1)%2)*s:KIV_kanmapkeysL+s:inputkey
 "                let s:KIV_mapkeyidbuf = -1
 "            :endif
+            let s:mapkeyidkata = (s:mapkeyiddaku/2*2+(s:mapkeyiddaku+1)%2)*s:KIV_kanmapkeysL+s:inputkey
+            :if s:KIV_mapkeyid%s:KIV_kanmapkeysL == s:KIV_mapkeyidbuf%s:KIV_kanmapkeysL
+                let s:mapkeyidkata = ((s:mapkeyiddaku+1)%4)*s:KIV_kanmapkeysL+s:inputkey
+            :endif
             let s:mapKchar = s:KIV_kanmapkeysY[s:mapkeyidkata]
         :endif
         execute "amenu  <silent> " . s:KIV_menumapid . "." . (s:inputkey+10) . " " . s:KIV_menumap . ".&\\" . s:mapKchar . ((s:KIV_mapkeyid%len(s:KIV_kanmapkeysX)==s:inputkey)?"✓":"") . " <Plug>(KIVmap" . s:mapKchar . ")"
