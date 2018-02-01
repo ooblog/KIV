@@ -22,6 +22,7 @@ function! KIVsetup(inputkey,findkey,hiraganakey,katakanakey)
     let s:KIV_inputkeys = ['1','2','3','4','5','6','7','8','9','0','-','q','w','e','r','t','y','u','i','o','p','a','s','d','f','g','h','j','k','l','[',']','z','x','c','v','b','n','m',',','.','/']
     let s:KIV_findkeys = ['!','"','#','$','%','&',"'",'(',')','~','=','Q','W','E','R','T','Y','U','I','O','P','A','S','D','F','G','H','J','K','L','{','}','Z','X','C','V','B','N','M','<','>','?']
     let s:KIV_kanmapkeysX = ["1あ","2い","3う","4え","5お","6か","7き","8く","9け","0こ","-〜","qさ","wし","eす","rせ","tそ","yた","uち","iつ","oて","pと","aな","sに","dぬ","fね","gの","hや","jゆ","kよ","lわ","[を","]ん","zま","xみ","cむ","vめ","bも","nら","mり",",る",".れ","/ろ"]
+    let s:KIV_kanmapkeysL = len(s:KIV_kanmapkeysX)
     let s:KIV_kanmapkeysY = s:KIV_kanmapkeysX[:]
     let s:KIV_kanmapkeysY += ["1ぁ","2ぃ","3ぅ","4ぇ","5ぉ","6が","7ぎ","8ぐ","9げ","0ご","-ゔ","qざ","wじ","eず","rぜ","tぞ","yだ","uじ","iづ","oで","pど","aは","sひ","dふ","fへ","gほ","hゃ","jゅ","kょ","lっ","[、","]。","zば","xび","cぶ","vべ","bぼ","nぱ","mぴ",",ぷ",".ぺ","/ぽ"]
     let s:KIV_kanmapkeysY += ["1ア","2イ","3ウ","4エ","5オ","6カ","7キ","8ク","9ケ","0コ","-ー","qサ","wシ","eス","rセ","tソ","yタ","uチ","iツ","oテ","pト","aナ","sニ","dヌ","fネ","gノ","hヤ","jユ","kヨ","lワ","[ヲ","]ン","zマ","xミ","cム","vメ","bモ","nラ","mリ",",ル",".レ","/ロ"]
@@ -102,9 +103,10 @@ endfunction
 
 "メニューなどの構築。
 function! KIVpushmenu()
-    let s:KIV_mapkeyid = s:KIV_mapkeyid[1:]+[index(s:KIV_kanmapkeysY,s:KIV_mapkey)]
     let s:KIV_menumap = escape("【" . s:KIV_mapkey . "(&K)",s:KIV_menuESCs)
     let s:KIV_menudic = escape(";" . s:KIV_dickey . "(&I)",s:KIV_menuESCs)
+    let s:mapKid = index(s:KIV_kanmapkeysY,s:KIV_mapkey)
+    let s:KIV_mapkeyid = s:KIV_mapkeyid[1:]+[index(s:KIV_kanmapkeysY,s:KIV_mapkey)]
     :for s:inputkey in range(len(s:KIV_kanmapkeysX))
         let s:dicchar = s:KIV_kanmap[s:KIV_mapkey][s:inputkey]
 "        let s:dicchar = len(s:dicchar) ? "　" : KIVkancharpeekL(s:dicchar,s:KIV_dickey)
@@ -113,14 +115,22 @@ function! KIVpushmenu()
         :for s:Vchar in split(s:dicchar, '\zs')
             let s:dicVchar = s:dicVchar . printf("<C-V>U%08x",char2nr(s:Vchar))
         :endfor
-        :if s:KIV_kanmapkeysX[s:inputkey] == s:KIV_mapkey
-            let s:mapKchar = s:KIV_kanmapkeysX[s:inputkey]
-            execute "amenu  <silent> " . s:KIV_menumapid . "." . (s:inputkey+10) . " " . s:KIV_menumap . ".&\\" . s:mapKchar . "✓ <Plug>(KIVmap" . s:mapKchar . ")"
-            execute "imap <silent> <Space>" . s:KIV_inputkeys[s:inputkey] . " <C-o><Plug>(KIVmap" . s:mapKchar . ")"
-        :else
-            execute "amenu  <silent> " . s:KIV_menumapid . "." . (s:inputkey+10) . " " . s:KIV_menumap . ".&\\" . s:KIV_kanmapkeysX[s:inputkey] . " <Plug>(KIVmap" . s:KIV_kanmapkeysX[s:inputkey] . ")"
-            execute "imap <silent> <Space>" . s:KIV_inputkeys[s:inputkey] . " <C-o><Plug>(KIVmap" . s:KIV_kanmapkeysX[s:inputkey] . ")"
+"        :if s:KIV_kanmapkeysX[s:inputkey] == s:KIV_mapkey
+"            let s:mapKchar = s:KIV_kanmapkeysY[s:inputkey]
+"            let s:mapKid = index(s:KIV_kanmapkeysY,s:KIV_mapkey)
+"            let s:mapKchar = s:KIV_kanmapkeysY[((s:mapKid/len(s:KIV_kanmapkeysX))%2+1)*len(s:KIV_kanmapkeysX)+s:mapKid%len(s:KIV_kanmapkeysX)]
+"            execute "amenu  <silent> " . s:KIV_menumapid . "." . (s:inputkey+10) . " " . s:KIV_menumap . ".&\\" . s:mapKchar . "✓ <Plug>(KIVmap" . s:mapKchar . ")"
+"            execute "imap <silent> <Space>" . s:KIV_inputkeys[s:inputkey] . " <C-o><Plug>(KIVmap" . s:mapKchar . ")"
+"        :else
+"            execute "amenu  <silent> " . s:KIV_menumapid . "." . (s:inputkey+10) . " " . s:KIV_menumap . ".&\\" . s:KIV_kanmapkeysY[s:inputkey] . " <Plug>(KIVmap" . s:KIV_kanmapkeysY[s:inputkey] . ")"
+"            execute "imap <silent> <Space>" . s:KIV_inputkeys[s:inputkey] . " <C-o><Plug>(KIVmap" . s:KIV_kanmapkeysY[s:inputkey] . ")"
+"        :endif
+        let s:mapKchar = s:KIV_kanmapkeysY[s:mapKid/s:KIV_kanmapkeysL*len(s:KIV_kanmapkeysX)+s:inputkey]
+        :if s:mapKid%len(s:KIV_kanmapkeysX) == s:inputkey
+            let s:mapKchar = s:KIV_kanmapkeysY[((s:mapKid/s:KIV_kanmapkeysL+1)%2)*s:KIV_kanmapkeysL+s:inputkey]
         :endif
+        execute "amenu  <silent> " . s:KIV_menumapid . "." . (s:inputkey+10) . " " . s:KIV_menumap . ".&\\" . s:mapKchar . ((s:mapKid%len(s:KIV_kanmapkeysX)==s:inputkey)?"✓":"") . " <Plug>(KIVmap" . s:mapKchar . ")"
+        execute "imap <silent> <Space>" . s:KIV_inputkeys[s:inputkey] . " <C-o><Plug>(KIVmap" . s:mapKchar . ")"
         execute "imenu  <silent> " . s:KIV_menudicid . "." . (s:inputkey+10) . " " . s:KIV_menudic . ".&" . escape(s:KIV_inputkeys[s:inputkey],s:KIV_menuESCs) . "\\" . escape(substitute(s:dicchar,"&","&&","g"),s:KIV_menuESCs) . " " . s:KIV_inputkeys[s:inputkey]
         execute "imap <silent> " . s:KIV_inputkeys[s:inputkey] . s:dicVchar
         execute "imap <silent> " . s:KIV_findkeys[s:inputkey] . " <C-o>/" . escape(substitute(s:dicchar,"|","<bar>","g"),s:KIV_menuESCs) . "<Enter>"
