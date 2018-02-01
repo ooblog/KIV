@@ -102,6 +102,7 @@ endfunction
 
 "メニューなどの構築。
 function! KIVpushmenu()
+    let s:KIV_mapkeyid = s:KIV_mapkeyid[1:]+[index(s:KIV_kanmapkeysY,s:KIV_mapkey)]
     let s:KIV_menumap = escape("【" . s:KIV_mapkey . "(&K)",s:KIV_menuESCs)
     let s:KIV_menudic = escape(";" . s:KIV_dickey . "(&I)",s:KIV_menuESCs)
     :for s:inputkey in range(len(s:KIV_kanmapkeysX))
@@ -112,22 +113,21 @@ function! KIVpushmenu()
         :for s:Vchar in split(s:dicchar, '\zs')
             let s:dicVchar = s:dicVchar . printf("<C-V>U%08x",char2nr(s:Vchar))
         :endfor
-        let s:Mchar = s:KIV_kanmapkeysX[s:inputkey]
-"        let s:Fchar = escape(substitute(s:dicchar,"|","<bar>","g"),s:KIV_menuESCs)
-        execute "amenu  <silent> " . s:KIV_menumapid . "." . (s:inputkey+10) . " " . s:KIV_menumap . ".&\\" . s:Mchar . " <Plug>(KIVmap" . s:Mchar . ")"
-"        execute "imap <silent> <Space>" . s:KIV_inputkeys[s:inputkey] . " <C-o><Plug>(KIVmap" . s:Mchar . ")"
-        execute "imap <silent> <Space>" . s:KIV_inputkeys[s:inputkey] . " <C-o><Plug>(KIVmap" . s:KIV_kanmapkeysX[s:inputkey] . ")"
-"        execute "imenu  <silent> " . s:KIV_menudicid . "." . (s:inputkey+10) . " " . s:KIV_menudic . ".&\\" . escape(s:KIV_inputkeys[s:inputkey],s:KIV_menuESCs) . escape(s:dicchar,s:KIV_inputESCs) . " " . s:KIV_inputkeys[s:inputkey]
-"        execute "imenu  <silent> " . s:KIV_menudicid . "." . (s:inputkey+10) . " " . s:KIV_menudic . ".&" . escape(s:KIV_inputkeys[s:inputkey],s:KIV_menuESCs) . get(s:KIV_inputESCs,s:dicchar,s:dicchar) . " " . s:KIV_inputkeys[s:inputkey]
-"        execute "imenu  <silent> " . s:KIV_menudicid . "." . (s:inputkey+10) . " " . s:KIV_menudic . ".&" . escape(s:KIV_inputkeys[s:inputkey],s:KIV_menuESCs) . "\\" . s:dicchar . " " . s:KIV_inputkeys[s:inputkey]
+        :if s:KIV_kanmapkeysX[s:inputkey] == s:KIV_mapkey
+            let s:mapKchar = s:KIV_kanmapkeysX[s:inputkey]
+            execute "amenu  <silent> " . s:KIV_menumapid . "." . (s:inputkey+10) . " " . s:KIV_menumap . ".&\\" . s:mapKchar . "✓ <Plug>(KIVmap" . s:mapKchar . ")"
+            execute "imap <silent> <Space>" . s:KIV_inputkeys[s:inputkey] . " <C-o><Plug>(KIVmap" . s:mapKchar . ")"
+        :else
+            execute "amenu  <silent> " . s:KIV_menumapid . "." . (s:inputkey+10) . " " . s:KIV_menumap . ".&\\" . s:KIV_kanmapkeysX[s:inputkey] . " <Plug>(KIVmap" . s:KIV_kanmapkeysX[s:inputkey] . ")"
+            execute "imap <silent> <Space>" . s:KIV_inputkeys[s:inputkey] . " <C-o><Plug>(KIVmap" . s:KIV_kanmapkeysX[s:inputkey] . ")"
+        :endif
         execute "imenu  <silent> " . s:KIV_menudicid . "." . (s:inputkey+10) . " " . s:KIV_menudic . ".&" . escape(s:KIV_inputkeys[s:inputkey],s:KIV_menuESCs) . "\\" . escape(substitute(s:dicchar,"&","&&","g"),s:KIV_menuESCs) . " " . s:KIV_inputkeys[s:inputkey]
         execute "imap <silent> " . s:KIV_inputkeys[s:inputkey] . s:dicVchar
-"        execute "imap <silent> " . s:KIV_findkeys[s:inputkey] . " <C-o>/" . s:Fchar . "<Enter>"
         execute "imap <silent> " . s:KIV_findkeys[s:inputkey] . " <C-o>/" . escape(substitute(s:dicchar,"|","<bar>","g"),s:KIV_menuESCs) . "<Enter>"
     :endfor
 
-    execute "imenu  <silent> " . (s:KIV_menumapid) . ".95 " . s:KIV_menumap . ".-sep_menumap- :"
-    execute "imenu  <silent> " . (s:KIV_menudicid) . ".89 " . s:KIV_menudic . ".-sep_menudic- :"
+"    execute "imenu  <silent> " . (s:KIV_menumapid) . ".95 " . s:KIV_menumap . ".-sep_menumap- :"
+"    execute "imenu  <silent> " . (s:KIV_menudicid) . ".89 " . s:KIV_menudic . ".-sep_menudic- :"
 endfunction
 
 "鍵盤変更(清濁平片)。
@@ -223,3 +223,5 @@ finish
 
 "#! -- Copyright (c) 2016-2018 ooblog --
 "#! License: MIT　https://github.com/ooblog/KIV/blob/master/LICENSE
+        execute "amenu  <silent> " . s:KIV_menumapid . "." . (s:inputkey+10) . " " . s:KIV_menumap . ".&\\" . s:KIV_kanmapkeysX[s:inputkey] . " <Plug>(KIVmap" . s:KIV_kanmapkeysX[s:inputkey] . ")"
+        execute "imap <silent> <Space>" . s:KIV_inputkeys[s:inputkey] . " <C-o><Plug>(KIVmap" . s:KIV_kanmapkeysX[s:inputkey] . ")"
