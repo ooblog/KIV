@@ -62,6 +62,23 @@ function! KIVsetup(inputkey,findkey,hiraganakey,katakanakey)
             :endif
         :endfor
     :endif
+    map <silent> <Space><Space> a
+    vmap <silent> <Space><Space> <Esc>
+    imap <silent> <Space><Space> <Esc>
+    imap <silent> <Space><Enter> <C-V><Space>
+    imap <silent> <S-Space> <C-o>?<Enter>
+    execute "imap <silent> <Space><Tab> <C-o><Plug>(KIVmap" . s:KIV_hiraganakey . ")"
+    execute "imap <silent> <Space><S-Tab> <C-o><Plug>(KIVmap" . s:KIV_katakanakey . ")"
+    execute "imap <silent> <Space><S-Space> <C-o><Plug>(KIVdic" . s:KIV_dickeydef . ")"
+    execute "noremap <Plug>(KIVdic" . s:KIV_dickeydef . ") :call KIVdic('" . s:KIV_dickeydef . "')<Enter>"
+    :for s:inputkey in range(len(s:KIV_kanmapkeysX))
+        execute "imap <silent> <Space>" . s:KIV_findkeys[s:inputkey] . " <C-o><Plug>(KIVdic" . s:KIV_kanmapkeysX[s:inputkey] . ")"
+        execute "noremap <Plug>(KIVdic" . s:KIV_kanmapkeysX[s:inputkey] . ") :call KIVdic('" . s:KIV_kanmapkeysX[s:inputkey] . "')<Enter>"
+    :endfor
+    :for s:inputkey in range(len(s:KIV_kanmapkeysY))
+        execute "noremap <Plug>(KIVmap" . s:KIV_kanmapkeysY[s:inputkey] . ") :call KIVmap('" . s:KIV_kanmapkeysY[s:inputkey] . "')<Enter>"
+    :endfor
+    execute "noremap <Plug>(KIVchar) :call KIVhelp('KIVdic.tsf')<Enter>"
     call KIVpullmenu(1)
     let s:KIV_menuid = 10000
     let s:KIV_menumap = "【&Kanji" . "(&K)"
@@ -70,34 +87,28 @@ function! KIVsetup(inputkey,findkey,hiraganakey,katakanakey)
     let s:KIV_menudicid = s:KIV_menuid+1
     let s:KIV_menuhelp = "KIV(&V)】"
     let s:KIV_menuhelpid = s:KIV_menuid+2
-    execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".51 " . s:KIV_menuhelp . ".KIV&readme\\.mdを開く <Plug>(KIVreadme)"
+    execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".51 " . s:KIV_menuhelp . ".取説「KIV&readme\\.md」を開く <Plug>(KIVreadme)"
     execute "noremap <Plug>(KIVreadme) :call KIVhelp('KIVreadme.md')<Enter>"
     execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".60 " . s:KIV_menuhelp . ".-sep_find- :"
     execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".61 " . s:KIV_menuhelp . ".ファイル履歴(&history)を開く <Plug>(KIVfiler)"
     execute "noremap <Plug>(KIVfiler) :call KIVfiler()<Enter>"
-    execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".70 " . s:KIV_menuhelp . ".-sep_dic- :"
-    execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".71 " . s:KIV_menuhelp . ".漢直鍵盤KIV&map\\.tsfを開く <Plug>(KIVkanmap)"
+    execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".70 " . s:KIV_menuhelp . ".-sep_dicfle- :"
+    execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".71 " . s:KIV_menuhelp . ".漢直鍵盤「KIV&map\\.tsf」を開く <Plug>(KIVkanmap)"
     execute "noremap <Plug>(KIVkanmap) :call KIVhelp('KIVmap.tsf')<Enter>"
-    execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".72 " . s:KIV_menuhelp . ".単漢字辞書KIV&dic\\.tsfを開く <Plug>(KIVchar)"
-    map <silent> <Space><Space> a
-    vmap <silent> <Space><Space> <Esc>
-    imap <silent> <Space><Space> <Esc>
-    imap <silent> <Space><Enter> <C-V><Space>
-    imap <silent> <S-Space> <C-o>?<Enter>
-    execute "imap <silent> <Space><Tab> <C-o><Plug>(KIVmap" . s:KIV_hiraganakey . ")"
-    execute "imap <silent> <Space><S-Tab> <C-o><Plug>(KIVmap" . s:KIV_katakanakey . ")"
-    :for s:inputkey in range(len(s:KIV_kanmapkeysY))
-        execute "noremap <Plug>(KIVmap" . s:KIV_kanmapkeysY[s:inputkey] . ") :call KIVmap('" . s:KIV_kanmapkeysY[s:inputkey] . "')<Enter>"
-    :endfor
-    execute "noremap <Plug>(KIVchar) :call KIVhelp('KIVdic.tsf')<Enter>"
-    execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".75 " . s:KIV_menuhelp . ".KanjiInputVim本体&KIV\\.vimを開く <Plug>(KIVsource)"
+    execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".72 " . s:KIV_menuhelp . ".単漢字辞書「KIV&dic\\.tsf」を開く <Plug>(KIVchar)"
+    execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".75 " . s:KIV_menuhelp . ".KanjiInputVim本体「&KIV\\.vim」を開く <Plug>(KIVsource)"
     execute "noremap <Plug>(KIVsource) :call KIVhelp('KIV.tsf')<Enter>"
-    execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".90 " . s:KIV_menuhelp . ".-sep_filer- :"
-    execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".91 " . s:KIV_menuhelp . ".&JISキーボード" . ((s:KIV_inputkey=='[を')&&(s:KIV_findkey==']ん')?"✓":"で再開") . " <Plug>(KIVsetupUS)"
+    execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".80 " . s:KIV_menuhelp . ".-sep_dic- :"
+    execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".81 " . s:KIV_menuhelp . ".字引項目の解除「" . s:KIV_dickeydef . "」(&I) :call KIVdic('" . s:KIV_dickeydef . "')<Enter>"
+    execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".90 " . s:KIV_menuhelp . ".字引項目を名称「名」に設定(&0) :call KIVdic('名')<Enter>"
+    execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".91 " . s:KIV_menuhelp . ".字引項目を英単語「英」に設定(&1) :call KIVdic('英')<Enter>"
+    execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".100 " . s:KIV_menuhelp . ".-sep_filer- :"
+    execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".101 " . s:KIV_menuhelp . ".&JISキーボード" . ((s:KIV_inputkey=='[を')&&(s:KIV_findkey==']ん')?"✓":"で再開") . " <Plug>(KIVsetupUS)"
     execute "noremap <Plug>(KIVsetupUS) :call KIVsetup('[を',']ん','-〜','-ー')<Enter>"
-    execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".92 " . s:KIV_menuhelp . ".&USキーボード" . ((s:KIV_inputkey=='[、')&&(s:KIV_findkey==']。')?"✓":"で再開") . " <Plug>(KIVsetupJIS)"
+    execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".102 " . s:KIV_menuhelp . ".&USキーボード" . ((s:KIV_inputkey=='[、')&&(s:KIV_findkey==']。')?"✓":"で再開") . " <Plug>(KIVsetupJIS)"
     execute "noremap <Plug>(KIVsetupJIS) :call KIVsetup('[、',']。','-〜','-ー')<Enter>"
-    execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".99 " . s:KIV_menuhelp . ".KIV終了(&quit) <Plug>(KIVexit)"
+    execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".105 " . s:KIV_menuhelp . ".-sep_quit- :"
+    execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".108 " . s:KIV_menuhelp . ".KIV終了(&quit) <Plug>(KIVexit)"
     execute "noremap <Plug>(KIVexit) :call KIVexit()<Enter>"
     call KIVpushmenu()
 endfunction
@@ -118,13 +129,6 @@ function! KIVpushmenu()
         let s:mapKchar = s:KIV_kanmapkeysY[s:KIV_mapkeyid/s:KIV_kanmapkeysL*len(s:KIV_kanmapkeysX)+s:inputkey]
         :if s:KIV_mapkeyid%s:KIV_kanmapkeysL == s:inputkey
             let s:mapkeyiddaku = s:KIV_mapkeyid/s:KIV_kanmapkeysL
-"            let s:mapkeyidkata = ((s:mapkeyiddaku+1)%4)*s:KIV_kanmapkeysL+s:inputkey
-"            let s:mapkeyidkata = (s:mapkeyiddaku/2*2+(s:mapkeyiddaku+1)%2)*s:KIV_kanmapkeysL+s:inputkey
-"            :if s:KIV_mapkeyid%s:KIV_kanmapkeysL == s:KIV_mapkeyidbuf%s:KIV_kanmapkeysL
-"                let s:mapkeyiddaku = s:mapkeyidkata/s:KIV_kanmapkeysL
-"                let s:mapkeyidkata = (((s:mapkeyiddaku/2+1)%2)*2+(s:mapkeyiddaku+1)%2)*s:KIV_kanmapkeysL+s:inputkey
-"                let s:KIV_mapkeyidbuf = -1
-"            :endif
             let s:mapkeyidkata = (s:mapkeyiddaku/2*2+(s:mapkeyiddaku+1)%2)*s:KIV_kanmapkeysL+s:inputkey
             :if s:KIV_mapkeyid%s:KIV_kanmapkeysL == s:KIV_mapkeyidbuf%s:KIV_kanmapkeysL
                 let s:mapkeyidkata = ((s:mapkeyiddaku+1)%4)*s:KIV_kanmapkeysL+s:inputkey
@@ -146,6 +150,13 @@ endfunction
 "鍵盤変更(清濁平片)。
 function! KIVmap(KIV_keyX)
     let s:KIV_mapkey = a:KIV_keyX
+    call KIVpullmenu(0)
+    call KIVpushmenu()
+endfunction
+
+"辞書変更。
+function! KIVdic(KIV_keyX)
+    let s:KIV_dickey = index(s:KIV_kanmapkeysX,a:KIV_keyX)>=0 ? s:KIV_kanmap[s:KIV_mapkey][index(s:KIV_kanmapkeysX,a:KIV_keyX)] :a:KIV_keyX
     call KIVpullmenu(0)
     call KIVpushmenu()
 endfunction
@@ -182,6 +193,7 @@ function! KIVexit()
     iunmap <silent> <S-Space>
     iunmap <silent> <Space><Tab>
     iunmap <silent> <Space><S-Tab>
+    iunmap <silent> <Space><S-Space>
     :for s:inputkey in range(len(s:KIV_kanmapkeysX))
         execute "iunmap <silent> " . s:KIV_inputkeys[s:inputkey]
         execute "iunmap <silent> " . s:KIV_findkeys[s:inputkey]
