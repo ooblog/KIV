@@ -1,6 +1,6 @@
 TSF_Tab-Separated-Forth:	3	#!TSF_grammar	#!TSF_Value.																																							
 (c)	Q.この[KIVmap.tsf]は何ですか。 A.漢直入力&漢直検索「KIV.vim」用の単漢字辞書です。#! -- Copyright (c) 2016-2018 ooblog -- #! License: MIT　https://github.com/ooblog/KIV/blob/master/LICENSE																																									
-1あ	あ	愛	会	亜	青	赤	秋	悪	空	憧	　	朝	足	　	汗	遊	当	　	　	宛	跡	穴	兄	　	姉	　	綾	鮎	　	泡	　	餡	甘	網	編	雨	　	嵐	蟻	有	在	　
+1あ	あ	愛	会	亜	青	赤	秋	悪	空	憧	　	朝	足	　	汗	遊	当	　	　	宛	跡	穴	兄	　	姉	　	綾	鮎	　	泡	　	暗	甘	網	編	雨	　	嵐	蟻	有	在	　
 2い	　	い	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	否	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　
 3う	　	　	う	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　
 4え	　	　	　	え	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　
@@ -42,7 +42,7 @@ mり	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　
 ,る	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	る	　	　
 .れ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	れ	　
 /ろ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	ろ
-1ぁ	ぁ	　	　	　	葵	茜	　	喘	　	　	　	　	味	　	　	　	仇	　	　	　	　	　	旭	溢	　	　	危	　	　	　	　	　	　	浴	虻	　	　	　	　	　	　	　
+1ぁ	ぁ	　	　	　	葵	茜	　	喘	　	　	　	　	味	　	　	　	仇	　	　	　	　	　	旭	溢	　	　	危	　	　	　	　	案	　	浴	虻	　	　	　	　	　	　	　
 2ぃ	　	ぃ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　
 3ぅ	　	　	ぅ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　
 4ぇ	　	　	　	ぇ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　
@@ -84,7 +84,7 @@ mぴ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　
 ,ぷ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	ぷ	　	　
 .ぺ	1	2	3	4	5	6	7	8	9	0	`	,	.	p	y	f	g	c	r	l	a	o	e	u	i	d	h	t	n	s	=	\	:	q	j	k	x	b	m	w	v	z
 /ぽ	!	@	#	$	%	^	&	*	(	)	'	<	>	P	Y	F	G	C	R	L	A	O	E	U	I	D	H	T	N	S	+	|	;	Q	J	K	X	B	M	W	V	Z
-1ア	ア	挨	拶	　	蒼	紅	　	握	　	　	　	　	脚	　	　	　	宕	　	　	　	　	　	　	　	　	　	怪	　	　	　	　	暗	尼	編	　	飴	　	荒	　	或	　	　
+1ア	ア	挨	拶	　	蒼	紅	　	握	　	　	　	　	脚	　	　	　	宕	　	　	　	　	　	　	　	　	　	怪	　	　	　	　	餡	尼	編	　	飴	　	荒	　	或	　	　
 2イ	　	イ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　
 3ウ	　	　	ウ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　
 4エ	　	　	　	エ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　

@@ -26,4 +26,4 @@ let b:current_syntax = "tsf"
 
 "# Copyright (c) 2017 ooblog
 "# License: MIT
-"# https://github.com/ooblog/TSF3KEV/blob/master/LICENSE
+"# https://github.com/ooblog/TSF3/blob/master/LICENSE
