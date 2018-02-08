@@ -146,6 +146,7 @@ function! KIVpushmenu()
             let s:mapKchar = s:KIV_kanmapkeysY[s:mapkeyidkata]
         :endif
         execute "amenu  <silent> " . s:KIV_menumapid . "." . (s:inputkey+10) . " " . s:KIV_menumap . ".&\\" . s:mapKchar . ((s:KIV_mapkeyid%len(s:KIV_kanmapkeysX)==s:inputkey)?"✓":"") . " <Plug>(KIVmap" . s:mapKchar . ")"
+        execute "nmenu  <silent> " . s:KIV_menumapid . "." . (s:inputkey+10) . " " . s:KIV_menumap . ".&\\" . s:mapKchar . ((s:KIV_mapkeyid%len(s:KIV_kanmapkeysX)==s:inputkey)?"✓":"") . " a<C-o><Plug>(KIVmap" . s:mapKchar . ")"
         execute "imap <silent> <Space>" . s:KIV_inputkeys[s:inputkey] . " <C-o><Plug>(KIVmap" . s:mapKchar . ")"
         execute "imenu  <silent> " . s:KIV_menudicid . "." . (s:inputkey+10) . " " . s:KIV_menudic . ".&" . escape(s:KIV_inputkeys[s:inputkey],s:KIV_menuESCs) . "\\" . escape(substitute(s:dicchar,"&","&&","g"),s:KIV_menuESCs) . " " . s:KIV_inputkeys[s:inputkey]
         execute "imap <silent> " . s:KIV_inputkeys[s:inputkey] . s:dicVchar
