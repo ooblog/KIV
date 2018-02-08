@@ -139,10 +139,10 @@ function! KIVpushmenu()
     let s:KIV_mapkeyid = index(s:KIV_kanmapkeysY,s:KIV_mapkey)
     :for s:inputkey in range(len(s:KIV_kanmapkeysX))
         let s:dicchar = KIVpeek(s:KIV_kanmap[s:KIV_mapkey][s:inputkey],s:KIV_dickey)
-        let s:dicVchar = " "
-        :for s:Vchar in split(s:dicchar, '\zs')
-            let s:dicVchar = s:dicVchar . printf("<C-V>U%08x",char2nr(s:Vchar))
-        :endfor
+"        let s:dicVchar = " "
+"        :for s:Vchar in split(s:dicchar, '\zs')
+"            let s:dicVchar = s:dicVchar . printf("<C-V>U%08x",char2nr(s:Vchar))
+"        :endfor
         let s:mapKchar = s:KIV_kanmapkeysY[s:KIV_mapkeyid/s:KIV_kanmapkeysL*len(s:KIV_kanmapkeysX)+s:inputkey]
         :if s:KIV_mapkeyid%s:KIV_kanmapkeysL == s:inputkey
             let s:mapkeyiddaku = s:KIV_mapkeyid/s:KIV_kanmapkeysL
@@ -156,7 +156,8 @@ function! KIVpushmenu()
         execute "nmenu  <silent> " . s:KIV_menumapid . "." . (s:inputkey+10) . " " . s:KIV_menumap . ".&\\" . s:mapKchar . ((s:KIV_mapkeyid%len(s:KIV_kanmapkeysX)==s:inputkey)?"✓":"") . " a<C-o><Plug>(KIVmap" . s:mapKchar . ")"
         execute "imap <silent> <Space>" . s:KIV_inputkeys[s:inputkey] . " <C-o><Plug>(KIVmap" . s:mapKchar . ")"
         execute "imenu  <silent> " . s:KIV_menudicid . "." . (s:inputkey+10) . " " . s:KIV_menudic . ".&" . escape(s:KIV_inputkeys[s:inputkey],s:KIV_menuESCs) . "\\" . escape(substitute(s:dicchar,"&","&&","g"),s:KIV_menuESCs) . " " . s:KIV_inputkeys[s:inputkey]
-        execute "imap <silent> " . s:KIV_inputkeys[s:inputkey] . s:dicVchar
+"        execute "imap <silent> " . s:KIV_inputkeys[s:inputkey] . s:dicVchar
+        execute "imap <silent> " . s:KIV_inputkeys[s:inputkey] . KIVimapunicode(s:dicchar)
         execute "imap <silent> " . s:KIV_findkeys[s:inputkey] . " <C-o>/" . escape(substitute(s:dicchar,"|","<bar>","g"),s:KIV_menuESCs) . "<Enter>"
     :endfor
     let s:KIV_mapkeyidbuf = s:KIV_mapkeyid
@@ -165,6 +166,12 @@ function! KIVpushmenu()
     :for s:defset in range(len(s:KIV_dickeydefset))
         execute "amenu  <silent> " . (s:KIV_menuhelpid) . "." . (90+s:defset) . " " . s:KIV_menuhelp . ".字引項目を「" . escape(s:KIV_dickeydefset[s:defset],s:KIV_menuESCs) . "」に設定" . (s:KIV_dickeybuf==s:KIV_dickeydefset[s:defset]?"✓":"") . (s:defset<16?printf("(&%X)",s:defset):"") . " :call KIVdic('" . s:KIV_dickeydefset[s:defset] . "')<Enter>"
     :endfor
+"    let s:dicVchar = " "
+"    :for s:Vchar in split(s:KIV_dickey, '\zs')
+"        let s:dicVchar = s:dicVchar . printf("<C-V>U%08x",char2nr(s:Vchar))
+"    :endfor
+"    execute "imap <silent> <Space><S-Enter>" . s:dicVchar
+    execute "imap <silent> <Space><S-Enter>" . KIVimapunicode(s:KIV_dickey)
 
 "    execute "imenu  <silent> " . (s:KIV_menumapid) . ".95 " . s:KIV_menumap . ".-sep_menumap- :"
 "    execute "imenu  <silent> " . (s:KIV_menudicid) . ".89 " . s:KIV_menudic . ".-sep_menudic- :"
@@ -200,6 +207,15 @@ function! KIVpeek(KIV_dicC,KIV_dicL)
         :endif
     :endif
     :return s:dicpeek
+endfunction
+
+"imap用unicode変換。
+function! KIVimapunicode(KIV_mapC)
+    let s:KIV_mapU = " "
+    :for s:mapU in split(a:KIV_mapC, '\zs')
+        let s:KIV_mapU = s:KIV_mapU . printf("<C-V>U%08x",char2nr(s:mapU))
+    :endfor
+    :return s:KIV_mapU
 endfunction
 
 "メニューの撤去。
@@ -239,6 +255,7 @@ function! KIVexit()
         execute "iunmap <silent> " . s:KIV_inputkeys[s:inputkey]
         execute "iunmap <silent> " . s:KIV_findkeys[s:inputkey]
     :endfor
+    iunmap <silent> <Space><S-Enter>
 endfunction
 
 "履歴ファイラー。
