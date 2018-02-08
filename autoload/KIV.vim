@@ -110,10 +110,11 @@ function! KIVsetup(inputkey,findkey,hiraganakey,katakanakey)
     execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".75 " . s:KIV_menuhelp . ".KanjiInputVim本体「KIV\\.vim」を開く(&V) <Plug>(KIVsource)"
     execute "noremap <Plug>(KIVsource) :call KIVhelp('KIV.tsf')<Enter>"
     execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".80 " . s:KIV_menuhelp . ".-sep_dic- :"
-    execute "amenu  <silent> " . (s:KIV_menuhelpid) . "." . (89) . " " . s:KIV_menuhelp . ".字引項目を「" . escape(s:KIV_dickeydef,s:KIV_menuESCs) . "」へ解除(&Z) :call KIVdic('" . s:KIV_dickeydef . "')<Enter>"
-    :for s:defset in range(len(s:KIV_dickeydefset))
-        execute "amenu  <silent> " . (s:KIV_menuhelpid) . "." . (90+s:defset) . " " . s:KIV_menuhelp . ".字引項目を「" . escape(s:KIV_dickeydefset[s:defset],s:KIV_menuESCs) . "」に設定" . (s:defset<16?printf("(&%X)",s:defset):"") . " :call KIVdic('" . s:KIV_dickeydefset[s:defset] . "')<Enter>"
-    :endfor
+"    execute "amenu  <silent> " . (s:KIV_menuhelpid) . "." . (89) . " " . s:KIV_menuhelp . ".字引項目を「" . escape(s:KIV_dickeydef,s:KIV_menuESCs) . "」へ解除(&Z) :call KIVdic('" . s:KIV_dickeydef . "')<Enter>"
+"    :for s:defset in range(len(s:KIV_dickeydefset))
+"        execute "amenu  <silent> " . (s:KIV_menuhelpid) . "." . (90+s:defset) . " " . s:KIV_menuhelp . ".字引項目を「" . escape(s:KIV_dickeydefset[s:defset],s:KIV_menuESCs) . "」に設定" . (s:defset<16?printf("(&%X)",s:defset):"") . " :call KIVdic('" . s:KIV_dickeydefset[s:defset] . "')<Enter>"
+"    :endfor
+    let s:KIV_dickeybuf = ""
     execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".110 " . s:KIV_menuhelp . ".-sep_filer- :"
     execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".111 " . s:KIV_menuhelp . ".JISキーボード" . ((s:KIV_inputkey=='[を')&&(s:KIV_findkey==']ん')?"✓":"で再開") . "(&J) <Plug>(KIVsetupUS)"
     execute "noremap <Plug>(KIVsetupUS) :call KIVsetup('[を',']ん','-〜','-ー')<Enter>"
@@ -127,6 +128,12 @@ endfunction
 
 "メニューなどの構築。
 function! KIVpushmenu()
+    :if len(s:KIV_dickeybuf)
+        execute "aunmenu  <silent> " . (s:KIV_menuhelpid) . "." . (89) . " " . s:KIV_menuhelp . ".字引項目を「" . escape(s:KIV_dickeydef,s:KIV_menuESCs) . "」へ解除" . (s:KIV_dickeybuf==s:KIV_dickeydef?"✓":"") . "(&Z)"
+        :for s:defset in range(len(s:KIV_dickeydefset))
+            execute "aunmenu  <silent> " . (s:KIV_menuhelpid) . "." . (90+s:defset) . " " . s:KIV_menuhelp . ".字引項目を「" . escape(s:KIV_dickeydefset[s:defset],s:KIV_menuESCs) . "」に設定" . (s:KIV_dickeybuf==s:KIV_dickeydefset[s:defset]?"✓":"") . (s:defset<16?printf("(&%X)",s:defset):"")
+        :endfor
+    :endif
     let s:KIV_menumap = escape("【" . s:KIV_mapkey . "(&K)",s:KIV_menuESCs)
     let s:KIV_menudic = escape(";" . s:KIV_dickey . "(&I)",s:KIV_menuESCs)
     let s:KIV_mapkeyid = index(s:KIV_kanmapkeysY,s:KIV_mapkey)
@@ -153,6 +160,11 @@ function! KIVpushmenu()
         execute "imap <silent> " . s:KIV_findkeys[s:inputkey] . " <C-o>/" . escape(substitute(s:dicchar,"|","<bar>","g"),s:KIV_menuESCs) . "<Enter>"
     :endfor
     let s:KIV_mapkeyidbuf = s:KIV_mapkeyid
+    let s:KIV_dickeybuf = s:KIV_dickey
+    execute "amenu  <silent> " . (s:KIV_menuhelpid) . "." . (89) . " " . s:KIV_menuhelp . ".字引項目を「" . escape(s:KIV_dickeydef,s:KIV_menuESCs) . "」へ解除" . (s:KIV_dickey==s:KIV_dickeydef?"✓":"") . "(&Z) :call KIVdic('" . s:KIV_dickeydef . "')<Enter>"
+    :for s:defset in range(len(s:KIV_dickeydefset))
+        execute "amenu  <silent> " . (s:KIV_menuhelpid) . "." . (90+s:defset) . " " . s:KIV_menuhelp . ".字引項目を「" . escape(s:KIV_dickeydefset[s:defset],s:KIV_menuESCs) . "」に設定" . (s:KIV_dickeybuf==s:KIV_dickeydefset[s:defset]?"✓":"") . (s:defset<16?printf("(&%X)",s:defset):"") . " :call KIVdic('" . s:KIV_dickeydefset[s:defset] . "')<Enter>"
+    :endfor
 
 "    execute "imenu  <silent> " . (s:KIV_menumapid) . ".95 " . s:KIV_menumap . ".-sep_menumap- :"
 "    execute "imenu  <silent> " . (s:KIV_menudicid) . ".89 " . s:KIV_menudic . ".-sep_menudic- :"
