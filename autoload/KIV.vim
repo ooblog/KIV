@@ -35,6 +35,7 @@ function! KIVsetup(inputkey,findkey,hiraganakey,katakanakey)
     let s:KIV_mapkeyid = index(s:KIV_kanmapkeysY,s:KIV_mapkey)
     let s:KIV_mapkeyidbuf = s:KIV_mapkeyid
     let s:KIV_dickeydefset = ['＊','英','名','異','簡','繁','越','地','逆','非','代','俗','顔','照']
+"    let s:KIV_dickeydefset = ['＊','英','名','異','簡','繁','越','地','逆','非','代','俗','顔','照','送','音','訓','活','漫','筆']
     let s:KIV_dickeydef = s:KIV_dickeydefset[0]
     let s:KIV_dickey = s:KIV_dickeydef
     let s:KIV_kanmap = {}
@@ -111,7 +112,7 @@ function! KIVsetup(inputkey,findkey,hiraganakey,katakanakey)
     execute "noremap <Plug>(KIVsource) :call KIVhelp('KIV.tsf')<Enter>"
     execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".80 " . s:KIV_menuhelp . ".-sep_dic- :"
     :for s:defset in range(len(s:KIV_dickeydefset))
-        execute "amenu  <silent> " . (s:KIV_menuhelpid) . "." . (90+s:defset) . " " . s:KIV_menuhelp . ".字引項目を「" . s:KIV_dickeydefset[s:defset] . "」に設定(&" . printf("%x",s:defset) . ") :call KIVdic('" . s:KIV_dickeydefset[s:defset] . "')<Enter>"
+        execute "amenu  <silent> " . (s:KIV_menuhelpid) . "." . (90+s:defset) . " " . s:KIV_menuhelp . ".字引項目を「" . escape(s:KIV_dickeydefset[s:defset],s:KIV_menuESCs) . "」に設定(&" . printf("%x",s:defset) . ") :call KIVdic('" . s:KIV_dickeydefset[s:defset] . "')<Enter>"
     :endfor
     execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".110 " . s:KIV_menuhelp . ".-sep_filer- :"
     execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".111 " . s:KIV_menuhelp . ".JISキーボード" . ((s:KIV_inputkey=='[を')&&(s:KIV_findkey==']ん')?"✓":"で再開") . "(&J) <Plug>(KIVsetupUS)"
@@ -172,19 +173,20 @@ endfunction
 
 "単漢字辞書読込
 function! KIVpeek(KIV_dicC,KIV_dicL)
-    let s:dicchar = len(a:KIV_dicC) ? a:KIV_dicC : "　"
+    let s:dicpeek = len(a:KIV_dicC) ? a:KIV_dicC : "　"
     let s:dicltsv = get(s:KIV_kandic,a:KIV_dicC,a:KIV_dicC)
     let s:dicposL = stridx(s:dicltsv,"\t" . a:KIV_dicL . ":")
     :if 0 < s:dicposL
         let s:dicposL = stridx(s:dicltsv,":",s:dicposL)+1
         let s:dicposR = stridx(s:dicltsv,"\t",s:dicposL)
-        let s:dicchar = strpart(s:dicltsv,s:dicposL,s:dicposR-s:dicposL)
+        let s:dicpeekC = strpart(s:dicltsv,s:dicposL,s:dicposR-s:dicposL)
+        let s:dicpeek = len(s:dicpeekC) ? s:dicpeekC : s:dicpeek
     :else
         :if a:KIV_dicL == "照"
-            let s:dicchar = printf("&#%d;",char2nr(a:KIV_dicC))
+            let s:dicpeek = printf("&#%d;",char2nr(s:dicpeek))
         :endif
     :endif
-    :return s:dicchar
+    :return s:dicpeek
 endfunction
 
 "メニューの撤去。
