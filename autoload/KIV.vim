@@ -24,7 +24,7 @@ function! KIVsetup(inputkey,findkey,hiraganakey,katakanakey)
     let s:KIV_kanmapkeysX = ["1あ","2い","3う","4え","5お","6か","7き","8く","9け","0こ","-〜","qさ","wし","eす","rせ","tそ","yた","uち","iつ","oて","pと","aな","sに","dぬ","fね","gの","hや","jゆ","kよ","lわ","[を","]ん","zま","xみ","cむ","vめ","bも","nら","mり",",る",".れ","/ろ"]
     let s:KIV_kanmapkeysL = len(s:KIV_kanmapkeysX)
     let s:KIV_kanmapkeysY = s:KIV_kanmapkeysX[:]
-    let s:KIV_kanmapkeysY += ["1ぁ","2ぃ","3ぅ","4ぇ","5ぉ","6が","7ぎ","8ぐ","9げ","0ご","-ゔ","qざ","wじ","eず","rぜ","tぞ","yだ","uじ","iづ","oで","pど","aは","sひ","dふ","fへ","gほ","hゃ","jゅ","kょ","lっ","[、","]。","zば","xび","cぶ","vべ","bぼ","nぱ","mぴ",",ぷ",".ぺ","/ぽ"]
+    let s:KIV_kanmapkeysY += ["1ぁ","2ぃ","3ぅ","4ぇ","5ぉ","6が","7ぎ","8ぐ","9げ","0ご","-ゔ","qざ","wじ","eず","rぜ","tぞ","yだ","uぢ","iづ","oで","pど","aは","sひ","dふ","fへ","gほ","hゃ","jゅ","kょ","lっ","[、","]。","zば","xび","cぶ","vべ","bぼ","nぱ","mぴ",",ぷ",".ぺ","/ぽ"]
     let s:KIV_kanmapkeysY += ["1ア","2イ","3ウ","4エ","5オ","6カ","7キ","8ク","9ケ","0コ","-ー","qサ","wシ","eス","rセ","tソ","yタ","uチ","iツ","oテ","pト","aナ","sニ","dヌ","fネ","gノ","hヤ","jユ","kヨ","lワ","[ヲ","]ン","zマ","xミ","cム","vメ","bモ","nラ","mリ",",ル",".レ","/ロ"]
     let s:KIV_kanmapkeysY += ["1ァ","2ィ","3ゥ","4ェ","5ォ","6ガ","7ギ","8グ","9ゲ","0ゴ","-ヴ","qザ","wジ","eズ","fゼ","tゾ","yダ","uヂ","iヅ","oデ","pド","aハ","sヒ","dフ","fヘ","gホ","hャ","jュ","kョ","lッ","[「","]」","zバ","xビ","cブ","vベ","bボ","nパ","mピ",",プ",".ペ","/ポ"]
     let s:KIV_inputkey = count(s:KIV_kanmapkeysY,a:inputkey) ? a:inputkey : '[を'
@@ -85,6 +85,7 @@ function! KIVsetup(inputkey,findkey,hiraganakey,katakanakey)
     :for s:inputkey in range(len(s:KIV_kanmapkeysX))
         execute "imap <silent> <Space>" . s:KIV_findkeys[s:inputkey] . " <C-o><Plug>(KIVdic" . s:KIV_kanmapkeysX[s:inputkey] . ")"
         execute "noremap <Plug>(KIVdic" . s:KIV_kanmapkeysX[s:inputkey] . ") :call KIVdic('" . s:KIV_kanmapkeysX[s:inputkey] . "')<Enter>"
+        execute "noremap <Plug>(KIVpoke" . s:KIV_kanmapkeysX[s:inputkey] . ") :call KIVopoke('" . s:KIV_kanmapkeysX[s:inputkey] . "')<Enter>"
     :endfor
     :for s:inputkey in range(len(s:KIV_kanmapkeysY))
         execute "noremap <Plug>(KIVmap" . s:KIV_kanmapkeysY[s:inputkey] . ") :call KIVmap('" . s:KIV_kanmapkeysY[s:inputkey] . "')<Enter>"
@@ -139,10 +140,6 @@ function! KIVpushmenu()
     let s:KIV_mapkeyid = index(s:KIV_kanmapkeysY,s:KIV_mapkey)
     :for s:inputkey in range(len(s:KIV_kanmapkeysX))
         let s:dicchar = KIVpeek(s:KIV_kanmap[s:KIV_mapkey][s:inputkey],s:KIV_dickey)
-"        let s:dicVchar = " "
-"        :for s:Vchar in split(s:dicchar, '\zs')
-"            let s:dicVchar = s:dicVchar . printf("<C-V>U%08x",char2nr(s:Vchar))
-"        :endfor
         let s:mapKchar = s:KIV_kanmapkeysY[s:KIV_mapkeyid/s:KIV_kanmapkeysL*len(s:KIV_kanmapkeysX)+s:inputkey]
         :if s:KIV_mapkeyid%s:KIV_kanmapkeysL == s:inputkey
             let s:mapkeyiddaku = s:KIV_mapkeyid/s:KIV_kanmapkeysL
@@ -156,7 +153,6 @@ function! KIVpushmenu()
         execute "nmenu  <silent> " . s:KIV_menumapid . "." . (s:inputkey+10) . " " . s:KIV_menumap . ".&\\" . s:mapKchar . ((s:KIV_mapkeyid%len(s:KIV_kanmapkeysX)==s:inputkey)?"✓":"") . " a<C-o><Plug>(KIVmap" . s:mapKchar . ")"
         execute "imap <silent> <Space>" . s:KIV_inputkeys[s:inputkey] . " <C-o><Plug>(KIVmap" . s:mapKchar . ")"
         execute "imenu  <silent> " . s:KIV_menudicid . "." . (s:inputkey+10) . " " . s:KIV_menudic . ".&" . escape(s:KIV_inputkeys[s:inputkey],s:KIV_menuESCs) . "\\" . escape(substitute(s:dicchar,"&","&&","g"),s:KIV_menuESCs) . " " . s:KIV_inputkeys[s:inputkey]
-"        execute "imap <silent> " . s:KIV_inputkeys[s:inputkey] . s:dicVchar
         execute "imap <silent> " . s:KIV_inputkeys[s:inputkey] . KIVimapunicode(s:dicchar)
         execute "imap <silent> " . s:KIV_findkeys[s:inputkey] . " <C-o>/" . escape(substitute(s:dicchar,"|","<bar>","g"),s:KIV_menuESCs) . "<Enter>"
     :endfor
@@ -166,11 +162,6 @@ function! KIVpushmenu()
     :for s:defset in range(len(s:KIV_dickeydefset))
         execute "amenu  <silent> " . (s:KIV_menuhelpid) . "." . (90+s:defset) . " " . s:KIV_menuhelp . ".字引項目を「" . escape(s:KIV_dickeydefset[s:defset],s:KIV_menuESCs) . "」に設定" . (s:KIV_dickeybuf==s:KIV_dickeydefset[s:defset]?"✓":"") . (s:defset<16?printf("(&%X)",s:defset):"") . " :call KIVdic('" . s:KIV_dickeydefset[s:defset] . "')<Enter>"
     :endfor
-"    let s:dicVchar = " "
-"    :for s:Vchar in split(s:KIV_dickey, '\zs')
-"        let s:dicVchar = s:dicVchar . printf("<C-V>U%08x",char2nr(s:Vchar))
-"    :endfor
-"    execute "imap <silent> <Space><S-Enter>" . s:dicVchar
     execute "imap <silent> <Space><S-Enter>" . KIVimapunicode(s:KIV_dickey)
 
 "    execute "imenu  <silent> " . (s:KIV_menumapid) . ".95 " . s:KIV_menumap . ".-sep_menumap- :"
@@ -184,14 +175,14 @@ function! KIVmap(KIV_keyX)
     call KIVpushmenu()
 endfunction
 
-"辞書変更。
+"辞書項目変更。
 function! KIVdic(KIV_keyX)
     let s:KIV_dickey = index(s:KIV_kanmapkeysX,a:KIV_keyX)>=0 ? s:KIV_kanmap[s:KIV_mapkey][index(s:KIV_kanmapkeysX,a:KIV_keyX)] :a:KIV_keyX
     call KIVpullmenu(0)
     call KIVpushmenu()
 endfunction
 
-"単漢字辞書読込
+"辞書項目読込。
 function! KIVpeek(KIV_dicC,KIV_dicL)
     let s:dicpeek = len(a:KIV_dicC) ? a:KIV_dicC : "　"
     let s:dicltsv = get(s:KIV_kandic,a:KIV_dicC,a:KIV_dicC)
@@ -216,6 +207,18 @@ function! KIVimapunicode(KIV_mapC)
         let s:KIV_mapU = s:KIV_mapU . printf("<C-V>U%08x",char2nr(s:mapU))
     :endfor
     :return s:KIV_mapU
+endfunction
+
+"鍵盤または辞書項目上書保存。
+function! KIVpoke(KIV_dicC)
+    let s:KIV_kantestfilepath = s:KIV_scriptdir . "/KIVtest.tsf"
+    :if a:KIV_dicL == s:KIV_dickeydef
+        let s:inputmap = input("漢直鍵盤:")
+        let testlines = ["test 1","test 2"]
+        call writefile(s:testlines,s:KIV_kantestfilepath)
+    :else
+        let s:inputdic = input("辞書項目:")
+    :endif
 endfunction
 
 "メニューの撤去。

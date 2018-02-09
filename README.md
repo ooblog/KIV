@@ -4,8 +4,10 @@
 ## KIV超ザックリ説明。
 
 漢字直接入力(漢直)Vimプラグインです(開発中)。  
-KIVは約２ストローク(鍵盤切替時のスペース入力はSandSすなわちシフト扱い)のかな入力で、漢字変換を用いず直接漢字などが入力できます(予定)。  
+KIVは約２ストローク(鍵盤切替時のスペース入力はSandSすなわちシフト扱い)のかな入力で、漢字変換を用いず直接漢字などが入力できます。  
+ひらがな入力時など鍵盤を切り替える必要が無い場合は１ストロークで入力できます。  
 独自のかな配列を用いる事で、USキーボード買ったのに設定はJISキーボード状態の様な混在環境(括弧の位置などがUSキーボードとJISキーボードでズレます)でも日本語入力できます。  
+KIVかな配列の外にある記号入力はJIS配列,US配列,Dvorak風配列の鍵盤の使い分けで補う形に。
 
 &#35;!	1あ 2い 3う 4え 5お 6か 7き 8く 9け 0こ -〜  
 &#35;!	qさ wし eす rせ tそ yた uち iつ oて pと  
@@ -23,8 +25,6 @@ KIVは約２ストローク(鍵盤切替時のスペース入力はSandSすな�
 &#35;!	qザ wジ eズ rゼ tゾ yダ uヂ iヅ oデ pド  
 &#35;!	aハ sヒ dフ fヘ gホ hャ jュ kョ lッ [「 ]」  
 &#35;!	zバ xビ cブ vベ bボ nパ mピ ,プ .ペ /ポ  
-
-KIVかな配列の外にある記号入力はJIS配列,US配列,Dvorak風配列の使い分けで補う形に。
 
 
 ## 既存のIMEおよびその他の漢直系日本語入と違う所。
@@ -50,6 +50,17 @@ IMEを起動しないのでモード切替時に全角半角キーを押す手�
 ☑&lt;Space&gt;&lt;S-Enter&gt;	字引項目自体の代入  
 ☑&lt;Space&gt;&lt;S-Space&gt;	字引項目の解除  
 ☐&lt;Space&gt;&lt;Esc&gt;a-z		[漢直鍵盤kanmap.tsf](https://github.com/ooblog/KIV3/blob/master/autoload/KIV3_kanmap.tsf "KIV3/KIV3_kanmap.tsf at master · ooblog/KIV3")上書き編集/[単漢字辞書kanchar.tsf](https://github.com/ooblog/KIV3/blob/master/autoload/KIV3_kanchar..tsf "KIV3/KIV3_kanchar..tsf at master · ooblog/KIV3")上書き編集  
+
+## 相席について。
+
+魑魅魍魎など特定の熟語でしか使わないような組み合わせの漢字は読みが遠くても同じ鍵盤にまとめてストローク数の削減を試みます。  
+相席一覧のかぎ括弧は鍵盤名を意味するので&lt;Space&gt;a-zの複数回入力が発生する場合もあります。  
+
+
+### 相席一覧(配置は頻繁に変わる場合があります)。
+
+宇宙	「3ぅ」uぢiづ  
+味噌	「xミ」tソyタ  
 
 
 ## 拡張子TSFってTSVと何が違うの？
