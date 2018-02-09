@@ -1,13 +1,10 @@
-# 漢字直接入力＆漢字直接検索Vimプラグイン「KanjiInputVim」(準備中)。
+# 漢字直接入力＆漢字直接検索Vimプラグイン「KanjiInputVim」(開発中)。
 
 
 ## KIV超ザックリ説明。
 
-漢字直接入力(漢直)Vimプラグインです(開発中)。  
-KIVは約２ストローク(鍵盤切替時のスペース入力はSandSすなわちシフト扱い)のかな入力で、漢字変換を用いず直接漢字などが入力できます。  
-ひらがな入力時など鍵盤を切り替える必要が無い場合は１ストロークで入力できます。  
+漢字直接入力(漢直)Vimプラグインです。  
 独自のかな配列を用いる事で、USキーボード買ったのに設定はJISキーボード状態の様な混在環境(括弧の位置などがUSキーボードとJISキーボードでズレます)でも日本語入力できます。  
-KIVかな配列の外にある記号入力はJIS配列,US配列,Dvorak風配列の鍵盤の使い分けで補う形に。
 
 &#35;!	1あ 2い 3う 4え 5お 6か 7き 8く 9け 0こ -〜  
 &#35;!	qさ wし eす rせ tそ yた uち iつ oて pと  
@@ -27,23 +24,34 @@ KIVかな配列の外にある記号入力はJIS配列,US配列,Dvorak風配列�
 &#35;!	zバ xビ cブ vベ bボ nパ mピ ,プ .ペ /ポ  
 
 
-## 既存のIMEおよびその他の漢直系日本語入と違う所。
+## 既存のIMEおよびその他の漢直系日本語入力と違う所。
 
-漢字入力だけではなく漢字検索機能があります。  
+### 鍵盤切替
+一般的な漢直は一文字２ストローク以上ですが、KIVはカナ入力時などで鍵盤切替が発生しない場合１ストロークコンボを稼げるので期待値２ストローク未満に。  
+(鍵盤切替時のスペース入力はSandSすなわち親指シフトキー換算で１ストロークとする)  
+
+### 漢字直接検索
 Vimの機能でも一文字検索は存在しますが(fコマンドなど)同じ一行内移動です。しかも半角限定。  
 KIVの漢直検索ならモードの切替無しに(厳密には&lt;C-o&gt;/を用いて)複数行間を一文字検索できます。しかも全角前提。  
-IMEを起動しないのでモード切替時に全角半角キーを押す手間が不要。  
-そのモード切替自体も「map &lt;silent&gt; &lt;Space&gt;&lt;Space&gt; a」「imap &lt;silent&gt; &lt;Space&gt;&lt;Space&gt; &lt;Esc&gt;」でEscもCtrlも不使用。ホームポジションが崩れるのを予防。  
+
+### 漢字直接字引
+単漢字辞書で漢直でも異体字を扱える予定。  
+字引入力では単語も扱えるので地名入力の時にショートカットできるかも。  
+
+### 全角半角Escキー不要
+Vimの場合通常モードでの半角操作hjklなどが頻発します。  
+KIVはOSのIMEを経由しないのでモード切替時の全角半角キーを押し直す手間が不要。  
+そのモード切替自体も親指操作「map &lt;silent&gt; &lt;Space&gt;&lt;Space&gt; a」「imap &lt;silent&gt; &lt;Space&gt;&lt;Space&gt; &lt;Esc&gt;」でホームポジション崩れを予防。  
 
 
 ## 操作一覧予定表(ToDo)。
 
-☑&lt;Space&gt;&lt;Space&gt;	Vimの挿入モード切替  
+☑&lt;Space&gt;&lt;Space&gt;	Vimの挿入モード通常モード切替  
 ☑&lt;Space&gt;&lt;Enter&gt;	半角スペース入力  
 ☑a-z	漢字入力([漢直鍵盤kanmap.tsf](https://github.com/ooblog/KIV3/blob/master/autoload/KIV3_kanmap.tsf "KIV3/KIV3_kanmap.tsf at master · ooblog/KIV3"))/字引項目があれば字引漢直([単漢字辞書kanchar.tsf](https://github.com/ooblog/KIV3/blob/master/autoload/KIV3_kanchar..tsf "KIV3/KIV3_kanchar..tsf at master · ooblog/KIV3"))  
 ☑A-Z	一文字検索下方向(&lt;C-o&gt;/)  
 ☑&lt;S-Space&gt;	一文字検索上方向(&lt;C-o&gt;?)  
-☑&lt;Space&gt;a-z	鍵盤変更/清濁変更/かなカタ変更([漢直鍵盤kanmap.tsf](https://github.com/ooblog/KIV3/blob/master/autoload/KIV3_kanmap.tsf "KIV3/KIV3_kanmap.tsf at master · ooblog/KIV3"))  
+☑&lt;Space&gt;a-z	挿入モード/鍵盤変更/清濁変更/かなカタ変更([漢直鍵盤kanmap.tsf](https://github.com/ooblog/KIV3/blob/master/autoload/KIV3_kanmap.tsf "KIV3/KIV3_kanmap.tsf at master · ooblog/KIV3"))  
 ☑&lt;Space&gt;&lt;Tab&gt;	ひらがな鍵盤に変更([漢直鍵盤kanmap.tsf](https://github.com/ooblog/KIV3/blob/master/autoload/KIV3_kanmap.tsf "KIV3/KIV3_kanmap.tsf at master · ooblog/KIV3"))  
 ☑&lt;Space&gt;&lt;S-Tab&gt;	カタカナ鍵盤に変更([漢直鍵盤kanmap.tsf](https://github.com/ooblog/KIV3/blob/master/autoload/KIV3_kanmap.tsf "KIV3/KIV3_kanmap.tsf at master · ooblog/KIV3"))  
 ☑&lt;Space&gt;A-Z	字引項目の変更([単漢字辞書kanchar.tsf](https://github.com/ooblog/KIV3/blob/master/autoload/KIV3_kanchar..tsf "KIV3/KIV3_kanchar..tsf at master · ooblog/KIV3"))  
@@ -54,13 +62,11 @@ IMEを起動しないのでモード切替時に全角半角キーを押す手�
 ## 相席について。
 
 魑魅魍魎など特定の熟語でしか使わないような組み合わせの漢字は読みが遠くても同じ鍵盤にまとめてストローク数の削減を試みます。  
-相席一覧のかぎ括弧は鍵盤名を意味するので&lt;Space&gt;a-zの複数回入力が発生する場合もあります。  
 
+### 相席一覧(配置はブランチ毎に頻繁に変わる場合があります)。
 
-### 相席一覧(配置は頻繁に変わる場合があります)。
-
-宇宙	「3ぅ」uぢiづ  
-味噌	「xミ」tソyタ  
+宇宙	3ぅui  
+味噌	xミty  
 
 
 ## 拡張子TSFってTSVと何が違うの？

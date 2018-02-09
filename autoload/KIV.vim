@@ -34,7 +34,7 @@ function! KIVsetup(inputkey,findkey,hiraganakey,katakanakey)
     let s:KIV_mapkey = s:KIV_hiraganakey
     let s:KIV_mapkeyid = index(s:KIV_kanmapkeysY,s:KIV_mapkey)
     let s:KIV_mapkeyidbuf = s:KIV_mapkeyid
-    let s:KIV_dickeydefset = ['英','名','異','簡','繁','越','地','逆','非','代','俗','顔','照','送','音','訓','活','漫','筆','幅']
+    let s:KIV_dickeydefset = ['英','名','異','簡','繁','越','地','逆','非','代','俗','顔','照','訓','音','送','活','漫','筆','幅']
     let s:KIV_dickeydef = '＊'
     let s:KIV_dickey = s:KIV_dickeydef
     let s:KIV_kanmap = {}
@@ -151,6 +151,7 @@ function! KIVpushmenu()
         :endif
         execute "amenu  <silent> " . s:KIV_menumapid . "." . (s:inputkey+10) . " " . s:KIV_menumap . ".&\\" . s:mapKchar . ((s:KIV_mapkeyid%len(s:KIV_kanmapkeysX)==s:inputkey)?"✓":"") . " <Plug>(KIVmap" . s:mapKchar . ")"
         execute "nmenu  <silent> " . s:KIV_menumapid . "." . (s:inputkey+10) . " " . s:KIV_menumap . ".&\\" . s:mapKchar . ((s:KIV_mapkeyid%len(s:KIV_kanmapkeysX)==s:inputkey)?"✓":"") . " a<C-o><Plug>(KIVmap" . s:mapKchar . ")"
+        execute "nmap <silent> <Space>" . s:KIV_inputkeys[s:inputkey] . " <Plug>(KIVmap" . s:mapKchar . ")a"
         execute "imap <silent> <Space>" . s:KIV_inputkeys[s:inputkey] . " <C-o><Plug>(KIVmap" . s:mapKchar . ")"
         execute "imenu  <silent> " . s:KIV_menudicid . "." . (s:inputkey+10) . " " . s:KIV_menudic . ".&" . escape(s:KIV_inputkeys[s:inputkey],s:KIV_menuESCs) . "\\" . escape(substitute(s:dicchar,"&","&&","g"),s:KIV_menuESCs) . " " . s:KIV_inputkeys[s:inputkey]
         execute "imap <silent> " . s:KIV_inputkeys[s:inputkey] . KIVimapunicode(s:dicchar)
@@ -212,11 +213,11 @@ endfunction
 
 "鍵盤または辞書項目上書保存。
 function! KIVpoke(KIV_keyX)
-    let s:KIV_keyX = index(s:KIV_kanmapkeysX,a:KIV_keyX)
-    :if s:KIV_keyX >= 0
+    let s:KIV_keyXid = index(s:KIV_kanmapkeysX,a:KIV_keyX)
+    :if s:KIV_keyXid >= 0
         let s:KIV_kantestfilepath = s:KIV_scriptdir . "/KIVtest.tsf"
         :if s:KIV_dickey == s:KIV_dickeydef
-            let s:inputmap = input("漢直鍵盤[" . s:KIV_kanmap[s:KIV_mapkey][s:KIV_keyX] . "]:")
+            let s:inputmap = input(s:KIV_kanmap[s:KIV_mapkey][s:KIV_keyXid] . " " . s:KIV_mapkey . s:KIV_inputkeys[s:KIV_keyXid] . " : ")
             :if len(s:inputmap)
                 let s:testlines = ["test 1","test 2"]
                 echo s:testlines
@@ -262,6 +263,8 @@ function! KIVexit()
     iunmap <silent> <Space><S-Tab>
     iunmap <silent> <Space><S-Space>
     :for s:inputkey in range(len(s:KIV_kanmapkeysX))
+        execute "nunmap <silent> <Space>" . s:KIV_inputkeys[s:inputkey]
+        execute "iunmap <silent> <Space>" . s:KIV_inputkeys[s:inputkey]
         execute "iunmap <silent> " . s:KIV_inputkeys[s:inputkey]
         execute "iunmap <silent> " . s:KIV_findkeys[s:inputkey]
     :endfor
