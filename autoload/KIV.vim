@@ -34,7 +34,7 @@ function! KIVsetup(inputkey,findkey,hiraganakey,katakanakey)
     let s:KIV_mapkey = s:KIV_hiraganakey
     let s:KIV_mapkeyid = index(s:KIV_kanmapkeysY,s:KIV_mapkey)
     let s:KIV_mapkeyidbuf = s:KIV_mapkeyid
-    let s:KIV_dickeydefset = ['英','名','異','簡','繁','越','地','逆','非','代','俗','顔','照','訓','音','送','活','漫','筆','幅']
+    let s:KIV_dickeydefset = ['英','名','異','簡','繁','越','地','逆','非','代','俗','顔','照','訓','音','送','熙','活','漫','筆','幅']
     let s:KIV_dickeydef = '＊'
     let s:KIV_dickey = s:KIV_dickeydef
     let s:KIV_kanmap = {}
@@ -215,16 +215,22 @@ endfunction
 function! KIVpoke(KIV_keyX)
     let s:KIV_keyXid = index(s:KIV_kanmapkeysX,a:KIV_keyX)
     :if s:KIV_keyXid >= 0
-        let s:KIV_kantestfilepath = s:KIV_scriptdir . "/KIVtest.tsf"
         :if s:KIV_dickey == s:KIV_dickeydef
-            let s:inputmap = input(s:KIV_kanmap[s:KIV_mapkey][s:KIV_keyXid] . " " . s:KIV_mapkey . s:KIV_inputkeys[s:KIV_keyXid] . " : ")
+            let s:inputmap = input("'" . s:KIV_kanmap[s:KIV_mapkey][s:KIV_keyXid] . "'" . s:KIV_mapkey . s:KIV_inputkeys[s:KIV_keyXid] . " : ")
             :if len(s:inputmap)
-                let s:testlines = ["test 1","test 2"]
-                echo s:testlines
-"                call writefile(s:testlines,s:KIV_kantestfilepath)
+                let s:KIV_kanmap[s:KIV_mapkey][s:KIV_keyXid] = s:inputmap
+                let s:KIV_dickeybuf = ""
+                call KIVpullmenu(0)
+                call KIVpushmenu()
+                let s:kanmaplines = [join(["TSF_Tab-Separated-Forth:","3","#!TSF_grammar","#!TSF_Value."],"\t")]
+                :for s:mapkey in s:KIV_kanmapkeysY
+                    let s:kanmapline = [s:mapkey]+s:KIV_kanmap[s:mapkey][:]
+                    let s:kanmaplines += [join(s:kanmapline ,"\t")]
+                :endfor
+                call writefile(s:kanmaplines,s:KIV_kanmapfilepath)
             :endif
         :else
-            let s:inputdic = input("辞書項目:")
+            let s:inputdic = input("辞書項目(未実装):")
         :endif
     :endif
 endfunction
