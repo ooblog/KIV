@@ -1,13 +1,13 @@
 TSF_Tab-Separated-Forth:	3	#!TSF_grammar	#!TSF_Value.																																							
 (c)	Q.この[KIVmap.tsf]は何ですか。 A.漢直入力&漢直検索「KIV.vim」用の単漢字辞書です。#! -- Copyright (c) 2016-2018 ooblog -- #! License: MIT　https://github.com/ooblog/KIV/blob/master/LICENSE																																									
 1あ	あ	愛	会	亜	青	赤	秋	悪	空	憧	　	朝	足	　	汗	遊	当	　	　	宛	跡	穴	兄	　	姉	　	綾	鮎	　	泡	　	暗	甘	網	編	雨	　	嵐	蟻	有	在	　
-2い	　	い	　	　	　	　	　	　	　	　	異	　	　	　	　	　	　	　	　	　	　	否	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　
+2い	　	い	　	　	　	　	　	　	　	　	異	　	　	　	　	　	　	　	　	　	　	否	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	入	　
 3う	　	　	う	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　
 4え	　	英	　	え	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	円	　	　	　	　	　	　	　	　	　	　
 5お	　	　	　	　	お	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　
 6か	　	　	　	　	　	か	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	簡	　	　	　	　	　	　	　	　	　	　
-7き	　	　	　	　	　	　	き	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　
-8く	　	　	　	　	　	　	　	く	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　
+7き	　	　	　	　	　	　	き	　	危	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	切	　	　
+8く	　	　	　	　	　	　	　	く	　	　	区	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　
 9け	　	　	　	　	　	　	　	　	け	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　
 0こ	　	恋	凍	声	氷	　	　	　	　	こ	　	漉	腰	超	越	構	　	　	　	　	　	　	　	　	　	　	　	濃	　	　	　	　	　	　	濾	　	　	　	　	　	　	　
 -〜	あ	い	う	え	お	か	き	く	け	こ	〜	さ	し	す	せ	そ	た	ち	つ	て	と	な	に	ぬ	ね	の	や	ゆ	よ	わ	を	ん	ま	み	む	め	も	ら	り	る	れ	ろ
@@ -28,7 +28,7 @@ fね	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　
 gの	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	の	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　
 hや	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	や	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　
 jゆ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	ゆ	　	　	　	　	　	　	　	　	　	　	　	　	　	　
-kよ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	よ	　	　	　	　	　	　	　	　	　	　	　	　	　
+kよ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	予	　	　	　	　	　	　	　	　	　	　	よ	　	　	　	　	　	　	　	　	　	　	　	　	　
 lわ	ゎ	ゐ	　	ゑ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	わ	　	　	　	　	　	　	　	　	　	　	　	　
 [を	1	2	3	4	5	6	7	8	9	0	-	q	w	e	r	t	y	u	i	o	p	a	s	d	f	g	h	j	k	l	[	]	z	x	c	v	b	n	m	,	.	/
 ]ん	!	"	#	$	%	&	'	(	)	~	=	Q	W	E	R	T	Y	U	I	O	P	A	S	D	F	G	H	J	K	L	{	}	Z	X	C	V	B	N	M	<	>	?
@@ -67,7 +67,7 @@ aは	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　
 sひ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	非	　	　	　	　	　	　	　	ひ	　	　	　	　	飛	翔	　	　	　	　	　	　	　	　	　	　	　	　	　
 dふ	　	　	　	増	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	ふ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　
 fへ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	へ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　
-gほ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	ほ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　
+gほ	　	　	崩	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	ほ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　
 hゃ	　	　	　	𛀁	么	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	ゃ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　
 jゅ	　	　	　	　	　	歪	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	ゅ	　	　	　	　	　	　	　	　	　	　	　	　	　	　
 kょ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	ょ	　	　	　	　	　	　	　	　	　	　	　	　	　
@@ -78,13 +78,13 @@ zば	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　
 xび	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	び	　	　	　	　	　	　	　	　
 cぶ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	ぶ	　	　	　	　	　	　	　
 vべ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	べ	　	　	　	　	　	　
-bぼ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	ぼ	　	　	　	　	　
+bぼ	　	　	防	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	ぼ	　	　	　	　	　
 nぱ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	ぱ	　	　	　	　
 mぴ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	ぴ	　	　	　
 ,ぷ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	ぷ	　	　
 .ぺ	1	2	3	4	5	6	7	8	9	0	`	,	.	p	y	f	g	c	r	l	a	o	e	u	i	d	h	t	n	s	=	\	:	q	j	k	x	b	m	w	v	z
 /ぽ	!	@	#	$	%	^	&	*	(	)	'	<	>	P	Y	F	G	C	R	L	A	O	E	U	I	D	H	T	N	S	+	|	;	Q	J	K	X	B	M	W	V	Z
-1ア	ア	挨	拶	　	蒼	紅	　	握	　	　	　	　	脚	　	　	　	宕	　	　	　	　	　	　	　	　	　	怪	　	　	　	　	餡	尼	編	　	飴	　	荒	　	或	　	　
+1ア	ア	挨	拶	喘	蒼	紅	　	握	　	　	　	　	脚	　	　	　	与	　	　	　	　	　	　	　	　	　	怪	　	　	　	　	餡	尼	編	　	飴	　	荒	　	或	　	　
 2イ	　	イ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　
 3ウ	　	　	ウ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　
 4エ	　	　	　	エ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　
@@ -126,7 +126,7 @@ mリ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　
 ,ル	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	ル	　	　
 .レ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	レ	　
 /ロ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	ロ
-1ァ	ァ	　	　	　	碧	　	　	　	　	　	　	　	鯵	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	炙	　	　	　	　	　	　	　
+1ァ	ァ	　	　	　	碧	　	　	　	　	　	　	　	鯵	　	　	　	宕	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	炙	　	　	　	　	　	　	　
 2ィ	　	ィ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　
 3ゥ	　	　	ゥ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　
 4ェ	　	　	　	ェ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　
@@ -143,7 +143,7 @@ eズ	　	　	　	　	　	　	　	　	　	　	　	　	　	ズ	　	　	　	　	　
 fゼ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	ゼ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　
 tゾ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	ゾ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　
 yダ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	ダ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　
-uヂ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	ヂ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　
+uヂ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	ヂ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	魑	魅	魍	魎	　	　	　	　	　
 iヅ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	ヅ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　
 oデ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	デ	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　
 pド	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	ド	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　	　
