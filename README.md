@@ -65,7 +65,31 @@ KIVはOSのIMEを経由しないのでモード切替時の全角半角キーを
 ☑&lt;Space&gt;&lt;S-Enter&gt;	字引項目自体の代入  
 ☑&lt;Space&gt;&lt;S-Space&gt;	字引項目の解除  
 ☑&lt;Space&gt;&lt;Esc&gt;a-z		[漢直鍵盤kanmap.tsf](https://github.com/ooblog/KIV3/blob/master/autoload/KIV3_kanmap.tsf "KIV3/KIV3_kanmap.tsf at master · ooblog/KIV3")上書き編集  
-☐&lt;Space&gt;&lt;Esc&gt;a-z		[単漢字辞書kanchar.tsf](https://github.com/ooblog/KIV3/blob/master/autoload/KIV3_kanchar..tsf "KIV3/KIV3_kanchar..tsf at master · ooblog/KIV3")上書き編集  
+
+### 字引項目一覧(配置はブランチ毎に変わる場合があります)。
+
+英	4え2	
+名	aな-	
+異	2い-	
+簡	6か&#93;	
+繁	aは&#93;	
+越	0こr	
+地	uちv	
+逆	7ぎh	
+非	sひw	
+代	yた2	
+俗	tぞ8	
+顔	6か5	
+照	oてn	
+訓	8く&#93;	
+音	5お&#93;	
+送	tそ3	
+熙	7キw	
+活	6かi	
+漫	zま6	
+筆	dふo	
+幅	aはz	
+
 
 ## 相席について。
 
@@ -75,6 +99,8 @@ KIVはOSのIMEを経由しないのでモード切替時の全角半角キーを
 ### 相席一覧(配置はブランチ毎に頻繁に変わる場合があります)。
 
 宇宙	3ぅui  
+男女	5おpa
+漢字	wじ&#91;&#93;
 味噌	xミty  
 飛翔	sひhj  
 挨拶	1ア23  

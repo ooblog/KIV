@@ -99,7 +99,7 @@ function! KIVsetup(inputkey,findkey,hiraganakey,katakanakey)
     let s:KIV_menudicid = s:KIV_menuid+1
     let s:KIV_menuhelp = "KIV(&V)】"
     let s:KIV_menuhelpid = s:KIV_menuid+2
-    execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".51 " . s:KIV_menuhelp . ".取説「KIVreadme\\.md」を開く(&M) <Plug>(KIVreadme)"
+    execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".51 " . s:KIV_menuhelp . ".取説「KIVreadme\\.md」を開く(&R) <Plug>(KIVreadme)"
     execute "noremap <Plug>(KIVreadme) :call KIVhelp('KIVreadme.md')<Enter>"
     execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".60 " . s:KIV_menuhelp . ".-sep_find- :"
     execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".61 " . s:KIV_menuhelp . ".ファイル履歴を開く(&H) <Plug>(KIVfiler)"
