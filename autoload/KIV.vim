@@ -78,8 +78,12 @@ function! KIVsetup(inputkey,findkey,hiraganakey,katakanakey)
     imap <silent> <Space><Space> <Esc>
     imap <silent> <Space><Enter> <C-V><Space>
     imap <silent> <S-Space> <C-o>?<Enter>
-    execute "imap <silent> <Space><Tab> <C-o><Plug>(KIVmap" . s:KIV_hiraganakey . ")"
-    execute "imap <silent> <Space><S-Tab> <C-o><Plug>(KIVmap" . s:KIV_katakanakey . ")"
+    execute "nmap <silent> <Space>: <Plug>(KIVmap" . s:KIV_hiraganakey . ")a"
+    execute "nmap <silent> <Space>; <Plug>(KIVmap" . s:KIV_katakanakey . ")a"
+    execute "nmap <silent> <Space><Tab> <Plug>(KIVmap" . s:KIV_inputkey . ")a"
+    execute "imap <silent> <Space>: <C-o><Plug>(KIVmap" . s:KIV_hiraganakey . ")"
+    execute "imap <silent> <Space>; <C-o><Plug>(KIVmap" . s:KIV_katakanakey . ")"
+    execute "imap <silent> <Space><Tab> <C-o><Plug>(KIVmap" . s:KIV_inputkey . ")"
     execute "imap <silent> <Space><S-Space> <C-o><Plug>(KIVdic" . s:KIV_dickeydef . ")"
     execute "noremap <Plug>(KIVdic" . s:KIV_dickeydef . ") :call KIVdic('" . s:KIV_dickeydef . "')<Enter>"
     :for s:inputkey in range(len(s:KIV_kanmapkeysX))
@@ -265,8 +269,12 @@ function! KIVexit()
     iunmap <silent> <Space><Space>
     iunmap <silent> <Space><Enter>
     iunmap <silent> <S-Space>
+    nunmap <silent> <Space>:
+    nunmap <silent> <Space>;
+    nunmap <silent> <Space><Tab>
+    iunmap <silent> <Space>:
+    iunmap <silent> <Space>;
     iunmap <silent> <Space><Tab>
-    iunmap <silent> <Space><S-Tab>
     iunmap <silent> <Space><S-Space>
     :for s:inputkey in range(len(s:KIV_kanmapkeysX))
         execute "nunmap <silent> <Space>" . s:KIV_inputkeys[s:inputkey]

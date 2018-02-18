@@ -59,8 +59,9 @@ KIVはOSのIMEを経由しないのでモード切替時の全角半角キーを
 ☑A-Z	一文字検索下方向(&lt;C-o&gt;/)  
 ☑&lt;S-Space&gt;	一文字検索上方向(&lt;C-o&gt;?)  
 ☑&lt;Space&gt;a-z	挿入モード/鍵盤変更＆清濁かなカタ変更([漢直鍵盤kanmap.tsf](https://github.com/ooblog/KIV3/blob/master/autoload/KIV3_kanmap.tsf "KIV3/KIV3_kanmap.tsf at master · ooblog/KIV3"))  
-☑&lt;Space&gt;&lt;Tab&gt;	ひらがな鍵盤「-〜」に変更([漢直鍵盤kanmap.tsf](https://github.com/ooblog/KIV3/blob/master/autoload/KIV3_kanmap.tsf "KIV3/KIV3_kanmap.tsf at master · ooblog/KIV3"))  
-☑&lt;Space&gt;&lt;S-Tab&gt;	カタカナ鍵盤「-ー」に変更([漢直鍵盤kanmap.tsf](https://github.com/ooblog/KIV3/blob/master/autoload/KIV3_kanmap.tsf "KIV3/KIV3_kanmap.tsf at master · ooblog/KIV3"))  
+☑&lt;Space&gt;&lt;Tab&gt;	アルファベット子文字鍵盤「#91;を」「#91;ヲ」に変更([漢直鍵盤kanmap.tsf](https://github.com/ooblog/KIV3/blob/master/autoload/KIV3_kanmap.tsf "KIV3/KIV3_kanmap.tsf at master · ooblog/KIV3"))  
+☑&lt;Space&gt;:	ひらがな清音鍵盤「-〜」に変更([漢直鍵盤kanmap.tsf](https://github.com/ooblog/KIV3/blob/master/autoload/KIV3_kanmap.tsf "KIV3/KIV3_kanmap.tsf at master · ooblog/KIV3"))  
+☑&lt;Space&gt;;	カタカナ清音鍵盤「-ー」に変更([漢直鍵盤kanmap.tsf](https://github.com/ooblog/KIV3/blob/master/autoload/KIV3_kanmap.tsf "KIV3/KIV3_kanmap.tsf at master · ooblog/KIV3"))  
 ☑&lt;Space&gt;A-Z	字引項目の変更([単漢字辞書kanchar.tsf](https://github.com/ooblog/KIV3/blob/master/autoload/KIV3_kanchar..tsf "KIV3/KIV3_kanchar..tsf at master · ooblog/KIV3"))  
 ☑&lt;Space&gt;&lt;S-Enter&gt;	字引項目自体の代入  
 ☑&lt;Space&gt;&lt;S-Space&gt;	字引項目の解除  
@@ -68,27 +69,27 @@ KIVはOSのIMEを経由しないのでモード切替時の全角半角キーを
 
 ### 字引項目一覧(配置はブランチ毎に変わる場合があります)。
 
-英	4え2	
-名	aな-	
-異	2い-	
-簡	6か&#93;	
-繁	aは&#93;	
-越	0こr	
-地	uちv	
-逆	7ぎh	
-非	sひw	
-代	yた2	
-俗	tぞ8	
-顔	6か5	
-照	oてn	
-訓	8く&#93;	
-音	5お&#93;	
-送	tそ3	
-熙	7キw	
-活	6かi	
-漫	zま6	
-筆	dふo	
-幅	aはz	
+英	4え2	文字の名称(英語)を字引。もしくは漢字の英訳などを字引(和英)。  
+名	aな-	文字の名称(日本語)を字引。  
+異	2い-	異体字や俗字や略字や通用や大字などを表示。  
+簡	6か&#93;	中国およびシンガポ—ルやマレ—シアなどの簡体字を字引。  
+繁	aは&#93;	中国および台湾や香港などの繁体字(正体字)を字引。  
+越	0こr	ベトナム(越南)のチュノム(字喃)を字引。  
+地	uちv	国名や地名や名字などを字引。  
+逆	7ぎh	反対の意味の漢字を字引。全角ではないという意味で半角ｶﾀｶﾅ等の入力にも流用。  
+非	sひw	似て非なる意味の漢字を字引。  
+代	yた2	濁音半濁音拗音促音入力補佐やロシア語以外のキリル文字など、似た文字での代用による字引入力。麻雀牌も。  
+俗	tぞ8	当て字や送り仮名だけでは説明不足になりそうな使用例・例文などを字引。  
+顔	6か5	顔文字などの１行AAや絵文字を字引。  
+照	oてn	HTMLの文字参照。辞書に無い文字は数値文字参照で補う。  
+訓	8く&#93;	漢字の訓読みを字引。原子記号だと音訓両方を字引。  
+音	5お&#93;	漢字の音読みを字引。原子記号だとカタカナを字引。  
+送	tそ3	漢字の送り仮名を字引。  
+熙	7キw	康熙部首コードを字引。康熙部首だと部首名を字引。  
+活	6かi	kan5x5dotフォント(グリフ)を字引。  
+漫	zま6	kan5x5comicフォント(グリフ)を字引。  
+筆	dふo	kan5x5brushフォント(グリフ)を字引。  
+幅	aはz	kan5x5フォント幅を字引。  
 
 
 ## 相席について。
