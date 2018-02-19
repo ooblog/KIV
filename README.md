@@ -28,8 +28,8 @@
 
 ### 鍵盤切替
 
-一般的な漢直は一文字２ストローク以上ですが、KIVはカナ入力時などで鍵盤切替が発生しない場合１ストロークコンボを稼げるので期待値２ストローク未満に。  
-(鍵盤切替時のスペース入力はSandSすなわち親指シフトキー換算で１ストロークとする)  
+一般的な漢直は一文字２ストローク以上ですが、KIVはアルファベットひらがなカタカナ入力時などで鍵盤切替が発生しない場合１ストロークコンボを稼げるので期待値２ストローク未満に。  
+(鍵盤切替時のスペース入力はSandSすなわち親指シフトキー換算で１ストロークにまとめる)  
 
 
 ### 漢字直接検索
@@ -58,13 +58,13 @@ KIVはOSのIMEを経由しないのでモード切替時の全角半角キーを
 ☑a-z	漢字入力([漢直鍵盤kanmap.tsf](https://github.com/ooblog/KIV3/blob/master/autoload/KIV3_kanmap.tsf "KIV3/KIV3_kanmap.tsf at master · ooblog/KIV3"))/字引項目があれば字引漢直([単漢字辞書kanchar.tsf](https://github.com/ooblog/KIV3/blob/master/autoload/KIV3_kanchar..tsf "KIV3/KIV3_kanchar..tsf at master · ooblog/KIV3"))  
 ☑A-Z	一文字検索下方向(&lt;C-o&gt;/)  
 ☑&lt;S-Space&gt;	一文字検索上方向(&lt;C-o&gt;?)  
-☑&lt;Space&gt;a-z	挿入モード/鍵盤変更＆清濁かなカタ変更([漢直鍵盤kanmap.tsf](https://github.com/ooblog/KIV3/blob/master/autoload/KIV3_kanmap.tsf "KIV3/KIV3_kanmap.tsf at master · ooblog/KIV3"))  
-☑&lt;Space&gt;&lt;Tab&gt;	アルファベット鍵盤に変更([漢直鍵盤kanmap.tsf](https://github.com/ooblog/KIV3/blob/master/autoload/KIV3_kanmap.tsf "KIV3/KIV3_kanmap.tsf at master · ooblog/KIV3"))  
-☑&lt;Space&gt;:	ひらがな鍵盤に変更([漢直鍵盤kanmap.tsf](https://github.com/ooblog/KIV3/blob/master/autoload/KIV3_kanmap.tsf "KIV3/KIV3_kanmap.tsf at master · ooblog/KIV3"))  
-☑&lt;Space&gt;;	カタカナ鍵盤に変更([漢直鍵盤kanmap.tsf](https://github.com/ooblog/KIV3/blob/master/autoload/KIV3_kanmap.tsf "KIV3/KIV3_kanmap.tsf at master · ooblog/KIV3"))  
-☑&lt;Space&gt;A-Z	字引項目の変更([単漢字辞書kanchar.tsf](https://github.com/ooblog/KIV3/blob/master/autoload/KIV3_kanchar..tsf "KIV3/KIV3_kanchar..tsf at master · ooblog/KIV3"))  
-☑&lt;Space&gt;&lt;S-Enter&gt;	字引項目自体の代入  
+☑&lt;Space&gt;a-z	挿入モード/ひらカタ鍵盤変更  
+☑&lt;Space&gt;&lt;Tab&gt;	大小アルファベット鍵盤変更  
+☑&lt;Space&gt;:	清濁ひらがな鍵盤変更  
+☑&lt;Space&gt;;	清濁カタカナ鍵盤変更  
+☑&lt;Space&gt;A-Z	字引項目の変更  
 ☑&lt;Space&gt;&lt;S-Space&gt;	字引項目の解除  
+☑&lt;Space&gt;&lt;S-Enter&gt;	字引項目自体の代入  
 ☑&lt;Space&gt;&lt;Esc&gt;a-z		[漢直鍵盤kanmap.tsf](https://github.com/ooblog/KIV3/blob/master/autoload/KIV3_kanmap.tsf "KIV3/KIV3_kanmap.tsf at master · ooblog/KIV3")上書き編集  
 
 ### 字引項目一覧(配置はブランチ毎に変わる場合があります)。
