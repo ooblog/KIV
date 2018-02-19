@@ -1,5 +1,5 @@
 TSF_Tab-Separated-Forth:	3.	#!TSF_grammar.	#!TSF_Value.
-©	英:copyright	名:著作権/コピーライト	異:(c)	俗:Q.この[KIVchar.tsf]は何ですか。 A.漢直入力&漢直検索「KIV.vim」用の単漢字辞書です。#! -- Copyright (c) 2016-2018 ooblog -- #! License: MIT　https://github.com/ooblog/TSF3KEV/blob/master/LICENSE	活:[05!?%*&@`Zzk_L76]	漫:	筆:
+©	英:copyright	名:著作権/コピーライト	異:(c)	俗:Q.この[KIVdic.tsf]は何ですか。 A.漢直入力&漢直検索「KIV.vim」用の単漢字辞書です。#! -- Copyright (c) 2016-2018 ooblog -- #! License: MIT　https://github.com/ooblog/KIV/blob/master/LICENSE	活:[05!?%*&@`Zzk_L76]	漫:	筆:
 ®	英:registered trademark symbol	名:登録商標	異:(r)	活:[05!?%/;@`Zzk_L76][&MN;]	漫:	筆:
 ℗	英:phonogram right	名:原盤権	異:(p)	俗:許諾を得ないレコードの複製からのレコード製作者の保護に関する条約	活:[05!?@&MZzk_L76]	漫:	筆:
 ™	英:trademark	名:商品商標	異:TM	活:[0398*^zy`Nnm&$76]	漫:	筆:
@@ -1586,7 +1586,7 @@ w	英:Arpabet W	名:有声両唇軟口蓋接近音	難:IPA国際音声記号	活
 九	英:nine			名:きゅう	音:ク/キュウ	訓:ここのつ	送:第九/九官鳥/九つ	異:玖	俗:9	代:🀏	地:九州	活:[128?`Zzn/*ml-+67]	漫:	筆:
 玖	英:nine			名:キュウ		音:		訓:		送:玖萬円	異:九	俗:9	活:	漫:	筆:
 拾	英:ten		名:ひろう	音:シュウ/ジュウ	訓:ひろい/ひろう	送:収拾/拾萬円/命拾い/火中の栗を拾う	異:十	俗:10^1/10	活:	漫:	筆:
-廿	英:twenty	名:にじゅう	訓:にじゅう/はつ/はた/とど	送:本朝廿四孝/廿日/廿枝/廿六木	異:卄	俗:弐拾/貳拾/20	活:[128934?!^%yl-+67][*MN/]	漫:	筆:
+廿	英:twenty	名:にじゅう	訓:にじゅう/はつ/はた/とど	送:本朝廿四孝/廿日/廿枝/廿六木	異:卄	俗:弐拾/貳拾/20	顔:◎	活:[128934?!^%yl-+67][*MN/]	漫:	筆:
 卅	英:thirty		名:さんじゅう		音:		訓:		送:卅		異:晦	俗:丗/参拾/30	活:	漫:	筆:
 晦	英:thirty/month end/disappear/blind	名:みそ	音:カイ	訓:みそ/くらます	送:隠晦曲折/大晦日/行方を晦ます	異:卅	俗:参拾/30	活:	漫:	筆:
 百	英:hundred	名:ひゃく	音:ヒャク/ビャク	訓:もも/どど/どう/お	送:百人力/三百代言/百重/百々目鬼/百目鬼/八百屋	異:陌	代:佰	俗:10^2/100/桃	活:[05!8*^zk+-76][&M`@]	漫:	筆:

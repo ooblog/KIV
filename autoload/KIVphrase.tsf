@@ -1,0 +1,16 @@
+TSF_Tab-Separated-Forth:	3.	#!TSF_grammar.	#!TSF_Value.
+Kanphrase	Q.この[Kanphrase.tsv]は何ですか。 A.漢直入力&漢直検索「KIV.vim」用の文字列置換リストです。#! -- Copyright (c) 2016-2018 ooblog -- #! License: MIT　https://github.com/ooblog/KIV/blob/master/LICENSE
+かんちょく	漢直
+ひらがな	平仮名
+平仮名	あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん
+かたかな	カタカナ
+カタカナ	片仮名
+片仮名	アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン
+せいおん	清音
+だくおん	濁音
+はんだくおん	半濁音
+ぜんかく	全角
+はんかく	半角
+おおもじ	大文字
+こもじ	小文字
+

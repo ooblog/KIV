@@ -16,5 +16,6 @@ cp syntax/tsf.vim ~/.vim/syntax/tsf.vim
 cp plugin/KEV3.vim ~/.vim/plugin/KEV3.vim
 cp autoload/KEV3.vim ~/.vim/autoload/KEV3.vim
 cp autoload/KIVmap.tsf ~/.vim/autoload/KIVmap.tsf
-cp autoload/KIVchar.tsf ~/.vim/autoload/KIVchar.tsf
+cp autoload/KIVdic.tsf ~/.vim/autoload/KIVdic.tsf
+cp autoload/KIVphrase.tsf ~/.vim/autoload/KIVphrase.tsf
 cp README.md ~/.vim/autoload/KIVreadme.md
