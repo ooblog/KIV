@@ -113,7 +113,7 @@ KIVはOSのIMEを経由しないのでモード切替時の全角半角キーを
 ## 拡張子TSFってTSVと何が違うの？
 
 TSFはプログラミング言語「TSF_Tab-Separated-Forth」の拡張子です。  
-詳しくは「[https://github.com/ooblog/TSF3KIV](https://github.com/ooblog/TSF3KIV "ooblog/TSF3KIV: プログラミング言語「TSF_Tab-Separated-Forth」開発準備(ver3草案)。")」などを参考。  
+詳しくは「[https://github.com/ooblog/TSF3](https://github.com/ooblog/TSF3 "ooblog/TSF3KIV: プログラミング言語「TSF_Tab-Separated-Forth」開発準備(ver3草案)。")」などを参考。  
 当初はTSFでエディタから作る予定だったけどVim版作った方が速かったのでVimプラグインとして独立。  
 
 
