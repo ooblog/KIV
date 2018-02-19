@@ -56,7 +56,7 @@ KIVはOSのIMEを経由しないのでモード切替時の全角半角キーを
 ☑&lt;Space&gt;&lt;Space&gt;	Vimの挿入モード通常モード切替  
 ☑&lt;Space&gt;&lt;Enter&gt;	半角スペース入力  
 ☑&lt;Space&gt;&lt;S-Enter&gt;	全角スペース入力  
-☑a-z	漢字入力([漢直鍵盤KIVmap.tsf](https://github.com/ooblog/KIV3/blob/master/autoload/KIVmap.tsf "KIV3/KIVmap.tsf at master · ooblog/KIV3"))/字引項目があれば字引漢直([単漢字辞書KIVdic.tsf](https://github.com/ooblog/KIV3/blob/master/autoload/KIVdic.tsf "KIV3/KIVdic.tsf at master · ooblog/KIV3"))  
+☑a-z	漢字入力([漢直鍵盤KIVmap.tsf](https://github.com/ooblog/KIV/blob/master/autoload/KIVmap.tsf "KIV3/KIVmap.tsf at master · ooblog/KIV3"))/字引項目があれば字引漢直([単漢字辞書KIVdic.tsf](https://github.com/ooblog/KIV/blob/master/autoload/KIVdic.tsf "KIV3/KIVdic.tsf at master · ooblog/KIV3"))  
 ☑A-Z	一文字検索下方向(&lt;C-o&gt;/)  
 ☑&lt;S-Space&gt;	一文字検索上方向(&lt;C-o&gt;?)  
 ☑&lt;Space&gt;a-z	挿入モード/ひらカタ鍵盤変更  
@@ -65,7 +65,7 @@ KIVはOSのIMEを経由しないのでモード切替時の全角半角キーを
 ☑&lt;Space&gt;;	清濁カタカナ鍵盤変更  
 ☑&lt;Space&gt;A-Z	字引項目の変更  
 ☑&lt;Space&gt;&lt;S-Space&gt;	字引項目の解除  
-☐&lt;Space&gt;&lt;BS&gt;	 文字列置換([フレーズ辞書KIVphrase.tsf](https://github.com/ooblog/KIV3/blob/master/autoload/KIVphrase.tsf "KIV3/KIVphrase.tsf at master · ooblog/KIV3"))  
+☐&lt;Space&gt;&lt;BS&gt;	 文字列置換([フレーズ辞書KIVphrase.tsf](https://github.com/ooblog/KIV/blob/master/autoload/KIVphrase.tsf "KIV3/KIVphrase.tsf at master · ooblog/KIV3"))  
 ☑&lt;Space&gt;&lt;Esc&gt;a-z		漢直鍵盤書き換え  
 
 
