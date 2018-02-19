@@ -79,15 +79,17 @@ function! KIVsetup(inputkey,findkey,hiraganakey,hiradakukey,katakanakey,katadaku
     vmap <silent> <Space><Space> <Esc>
     imap <silent> <Space><Space> <Esc>
     imap <silent> <Space><Enter> <C-V><Space>
+    imap <silent> <Space><S-Enter> <C-V>　
     imap <silent> <S-Space> <C-o>?<Enter>
 "    execute "nmap <silent> <Space>: <Plug>(KIVmap" . s:KIV_hiraganakey . ")a"
 "    execute "nmap <silent> <Space>; <Plug>(KIVmap" . s:KIV_katakanakey . ")a"
 "    execute "nmap <silent> <Space><Tab> <Plug>(KIVmap" . s:KIV_inputkey . ")a"
+    execute "nmap <silent> <Space><S-Space> <Plug>(KIVdic" . s:KIV_dickeydef . ")a"
 "    execute "imap <silent> <Space>: <C-o><Plug>(KIVmap" . s:KIV_hiraganakey . ")"
 "    execute "imap <silent> <Space>; <C-o><Plug>(KIVmap" . s:KIV_katakanakey . ")"
 "    execute "imap <silent> <Space><Tab> <C-o><Plug>(KIVmap" . s:KIV_inputkey . ")"
     execute "imap <silent> <Space><S-Space> <C-o><Plug>(KIVdic" . s:KIV_dickeydef . ")"
-    execute "noremap <Plug>(KIVdic" . s:KIV_dickeydef . ") :call KIVdic('" . s:KIV_dickeydef . "')<Enter>"
+    execute "noremap <Plug>(KIVdic" . s:KIV_dickeydef . ") :call KIVdic('" . s:KIV_dickeydef. "')<Enter>"
     :for s:inputkey in range(len(s:KIV_kanmapkeysX))
         execute "imap <silent> <Space>" . s:KIV_findkeys[s:inputkey] . " <C-o><Plug>(KIVdic" . s:KIV_kanmapkeysX[s:inputkey] . ")"
         execute "noremap <Plug>(KIVdic" . s:KIV_kanmapkeysX[s:inputkey] . ") :call KIVdic('" . s:KIV_kanmapkeysX[s:inputkey] . "')<Enter>"
@@ -194,7 +196,6 @@ function! KIVpushmenu()
         execute "amenu  <silent> " . (s:KIV_menuhelpid) . "." . (90+s:defset) . " " . s:KIV_menuhelp . ".字引項目を「" . escape(s:KIV_dickeydefset[s:defset],s:KIV_menuESCs) . "」に設定" . (s:KIV_dickeybuf==s:KIV_dickeydefset[s:defset]?"✓":"") . (s:defset<16?printf("(&%X)",s:defset):"") . " :call KIVdic('" . s:KIV_dickeydefset[s:defset] . "')<Enter>"
     :endfor
     execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".119 " . s:KIV_menuhelp . ".-sep_dummygtk3- :"
-    execute "imap <silent> <Space><S-Enter>" . KIVimapunicode(s:KIV_dickey)
 endfunction
 
 "鍵盤変更(清濁平片)。
@@ -291,10 +292,12 @@ function! KIVexit()
     unmap <silent> <Space><Space>
     iunmap <silent> <Space><Space>
     iunmap <silent> <Space><Enter>
+    iunmap <silent> <Space><S-Enter>
     iunmap <silent> <S-Space>
     nunmap <silent> <Space>:
     nunmap <silent> <Space>;
     nunmap <silent> <Space><Tab>
+    nunmap <silent> <Space><S-Space>
     iunmap <silent> <Space>:
     iunmap <silent> <Space>;
     iunmap <silent> <Space><Tab>
@@ -305,7 +308,6 @@ function! KIVexit()
         execute "iunmap <silent> " . s:KIV_inputkeys[s:inputkey]
         execute "iunmap <silent> " . s:KIV_findkeys[s:inputkey]
     :endfor
-    iunmap <silent> <Space><S-Enter>
 endfunction
 
 "履歴ファイラー。
