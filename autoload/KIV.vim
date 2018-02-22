@@ -261,29 +261,51 @@ function! KIVpoke(KIV_keyX)
     :endif
 endfunction
 
-"フレーズ辞書文字列置換(行末)。
+"フレーズ辞書文字列置換。
 function! KIVphrase()
     let s:phrase = ""
     let s:phraseword = ""
-    :if strlen(getline('.'))
-        let s:phrasecol = col('.')-1
-       :while s:phrasecol >= 0
-            let s:phrasechar = matchstr(getline('.'),'.',s:phrasecol,1)
-            let s:phrase = s:phrasechar . s:phrase
-            let s:phraseword = get(s:KIV_kanphrase,s:phrase,"")
-            :if strlen(s:phraseword)
-                :break
-            :endif
-            let s:phrasecol -= strlen(s:phrasechar)
-        :endwhile
+    :if col('.')!=col('.')
+"行末ver
+        :if strlen(getline('.'))
+            let s:phrasecol = col('.')-1
+            :while s:phrasecol >= 0
+                let s:phrasechar = matchstr(getline('.'),'.',s:phrasecol,1)
+                let s:phrase = s:phrasechar . s:phrase
+                let s:phraseword = get(s:KIV_kanphrase,s:phrase,"")
+                :if strlen(s:phraseword)
+                    execute ":normal " . (len(split(s:phrase, '\zs'))-1) . "Xx"
+                    let s:tmp = @a
+                    let @a = s:phraseword
+                    execute ':normal "ap'
+                    let @a = s:tmp
+                    :break
+                :endif
+                let s:phrasecol -= strlen(s:phrasechar)
+            :endwhile
+        :endif
+    :else
+"文中ver
+        :if strlen(getline('.'))
+            let s:phrasecol = col('.')-1-strlen(matchstr(getline('.'),'.',col('.')-1))
+            :while s:phrasecol >= 0
+                let s:phrasechar = matchstr(getline('.'),'.',s:phrasecol,1)
+                let s:phrase = s:phrasechar . s:phrase
+                echo s:phrase
+                let s:phraseword = get(s:KIV_kanphrase,s:phrase,"")
+                :if strlen(s:phraseword)
+                    execute ":normal " . (len(split(s:phrase, '\zs'))-0) . "X"
+                    let s:tmp = @a
+                    let @a = s:phraseword
+                    execute ':normal "aPl'
+                    let @a = s:tmp
+                    :break
+                :endif
+                let s:phrasecol -= strlen(s:phrasechar)
+            :endwhile
+        :endif
     :endif
-    :if strlen(s:phraseword)
-        execute ":normal " . (len(split(s:phrase, '\zs'))-1) . "Xx"
-        let s:tmp = @a
-        let @a = s:phraseword
-        execute ':normal "ap'
-        let @a = s:tmp
-    :endif
+
 endfunction
 
 "メニューの撤去。
