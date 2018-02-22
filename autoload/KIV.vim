@@ -265,7 +265,7 @@ endfunction
 function! KIVphrase()
     let s:phrase = ""
     let s:phraseword = ""
-    :if col('.')!=col('.')
+    :if col("$")-1 <= col(".")-1+len(matchstr(getline('.'),'.',col('.')-1,1))
 "行末ver
         :if strlen(getline('.'))
             let s:phrasecol = col('.')-1
@@ -285,13 +285,12 @@ function! KIVphrase()
             :endwhile
         :endif
     :else
-"文中ver
-        :if strlen(getline('.'))
-            let s:phrasecol = col('.')-1-strlen(matchstr(getline('.'),'.',col('.')-1))
+"文中ver(バグあり)
+       :if strlen(getline('.'))
+            let s:phrasecol = col('.')-1-strlen(matchstr(getline('.'),'.',col('.')-1,1))
             :while s:phrasecol >= 0
                 let s:phrasechar = matchstr(getline('.'),'.',s:phrasecol,1)
                 let s:phrase = s:phrasechar . s:phrase
-                echo s:phrase
                 let s:phraseword = get(s:KIV_kanphrase,s:phrase,"")
                 :if strlen(s:phraseword)
                     execute ":normal " . (len(split(s:phrase, '\zs'))-0) . "X"
