@@ -261,13 +261,14 @@ function! KIVpoke(KIV_keyX)
     :endif
 endfunction
 
+"フレーズ辞書文字列置換(行末)。
 function! KIVphrase()
     let s:phrase = ""
     let s:phraseword = ""
     :if strlen(getline('.'))
         let s:phrasecol = col('.')-1
-        :while s:phrasecol >= 0
-             let s:phrasechar = matchstr(getline('.'),'.',s:phrasecol,1)
+       :while s:phrasecol >= 0
+            let s:phrasechar = matchstr(getline('.'),'.',s:phrasecol,1)
             let s:phrase = s:phrasechar . s:phrase
             let s:phraseword = get(s:KIV_kanphrase,s:phrase,"")
             :if strlen(s:phraseword)
@@ -277,9 +278,12 @@ function! KIVphrase()
         :endwhile
     :endif
     :if strlen(s:phraseword)
-        execute ":s/" . s:phrase . "/" . s:phraseword. "/g"
-        execute "$"
-   :endif
+        execute ":normal " . (len(split(s:phrase, '\zs'))-1) . "Xx"
+        let s:tmp = @a
+        let @a = s:phraseword
+        execute ':normal "ap'
+        let @a = s:tmp
+    :endif
 endfunction
 
 "メニューの撤去。
@@ -316,10 +320,11 @@ function! KIVexit()
     nunmap <silent> <Space>;
     nunmap <silent> <Space>:
     nunmap <silent> <Space><Tab>
-    nunmap <silent> <Space><S-Space>
     iunmap <silent> <Space>;
     iunmap <silent> <Space>:
     iunmap <silent> <Space><Tab>
+    iunmap <silent> <Space><BS>
+    nunmap <silent> <Space><S-Space>
     iunmap <silent> <Space><S-Space>
     :for s:inputkey in range(len(s:KIV_kanmapkeysX))
         execute "nunmap <silent> <Space>" . s:KIV_inputkeys[s:inputkey]
@@ -377,5 +382,3 @@ finish
 
 "#! -- Copyright (c) 2016-2018 ooblog --
 "#! License: MIT　https://github.com/ooblog/KIV/blob/master/LICENSE
-        execute "amenu  <silent> " . s:KIV_menumapid . "." . (s:inputkey+10) . " " . s:KIV_menumap . ".&\\" . s:KIV_kanmapkeysX[s:inputkey] . " <Plug>(KIVmap" . s:KIV_kanmapkeysX[s:inputkey] . ")"
-        execute "imap <silent> <Space>" . s:KIV_inputkeys[s:inputkey] . " <C-o><Plug>(KIVmap" . s:KIV_kanmapkeysX[s:inputkey] . ")"
