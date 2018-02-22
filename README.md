@@ -65,7 +65,7 @@ KIVはOSのIMEを経由しないのでモード切替時の全角半角キーを
 ☑&lt;Space&gt;;	清濁カタカナ鍵盤変更  
 ☑&lt;Space&gt;A-Z	字引項目の変更  
 ☑&lt;Space&gt;&lt;S-Space&gt;	字引項目の解除  
-☐&lt;Space&gt;&lt;BS&gt;	 文字列置換([フレーズ辞書KIVphrase.tsf](https://github.com/ooblog/KIV/blob/master/autoload/KIVphrase.tsf "KIV/KIVphrase.tsf at master · ooblog/KIV"))  
+☑&lt;Space&gt;&lt;BS&gt;	 文字列置換([フレーズ辞書KIVphrase.tsf](https://github.com/ooblog/KIV/blob/master/autoload/KIVphrase.tsf "KIV/KIVphrase.tsf at master · ooblog/KIV"))  
 ☑&lt;Space&gt;&lt;Esc&gt;a-z		漢直鍵盤書き換え  
 
 

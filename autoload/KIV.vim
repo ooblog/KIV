@@ -66,25 +66,25 @@ function! KIVsetup(inputkey,findkey,hiraganakey,hiradakukey,katakanakey,katadaku
         :endfor
     :endif
     let s:KIV_kandic = {}
-    let s:KIV_kandicfilepath = s:KIV_scriptdir . "/KIVdic.tsf"
-    :if filereadable(s:KIV_kandicfilepath)
-        :for s:kandicfileline in readfile(s:KIV_kandicfilepath)
-            :if stridx(s:kandicfileline,"\t") >= 0
-                let s:kandiclinelist = split(s:kandicfileline,"\t")
-                let s:KIV_kandic[s:kandiclinelist[0]] = join(s:kandiclinelist,"\t")
-            :endif
-        :endfor
-    :endif
+"    let s:KIV_kandicfilepath = s:KIV_scriptdir . "/KIVdic.tsf"
+"    :if filereadable(s:KIV_kandicfilepath)
+"        :for s:kandicfileline in readfile(s:KIV_kandicfilepath)
+"            :if stridx(s:kandicfileline,"\t") >= 0
+"                let s:kandiclinelist = split(s:kandicfileline,"\t")
+"                let s:KIV_kandic[s:kandiclinelist[0]] = join(s:kandiclinelist,"\t")
+"            :endif
+"        :endfor
+"    :endif
     let s:KIV_kanphrase = {}
-    let s:KIV_kanphrasefilepath = s:KIV_scriptdir . "/KIVphrase.tsf"
-    :if filereadable(s:KIV_kanphrasefilepath)
-        :for s:kanphrasefileline in readfile(s:KIV_kanphrasefilepath)
-            :if stridx(s:kanphrasefileline,"\t") >= 0
-                let s:kanphraselist = split(s:kanphrasefileline,"\t")
-                let s:KIV_kanphrase[s:kanphraselist[0]] = join(s:kanphraselist[1:],"\n")
-            :endif
-        :endfor
-    :endif
+"    let s:KIV_kanphrasefilepath = s:KIV_scriptdir . "/KIVphrase.tsf"
+"    :if filereadable(s:KIV_kanphrasefilepath)
+"        :for s:kanphrasefileline in readfile(s:KIV_kanphrasefilepath)
+"            :if stridx(s:kanphrasefileline,"\t") >= 0
+"                let s:kanphraselist = split(s:kanphrasefileline,"\t")
+"                let s:KIV_kanphrase[s:kanphraselist[0]] = join(s:kanphraselist[1:],"\n")
+"            :endif
+"        :endfor
+"    :endif
     map <silent> <Space><Space> a
     vmap <silent> <Space><Space> <Esc>
     imap <silent> <Space><Space> <Esc>
@@ -210,6 +210,17 @@ endfunction
 "辞書項目変更。
 function! KIVdic(KIV_keyX)
     let s:KIV_dickey = index(s:KIV_kanmapkeysX,a:KIV_keyX)>=0 ? s:KIV_kanmap[s:KIV_mapkey][index(s:KIV_kanmapkeysX,a:KIV_keyX)] : a:KIV_keyX
+    :if len(s:KIV_kandic) == 0
+        let s:KIV_kandicfilepath = s:KIV_scriptdir . "/KIVdic.tsf"
+        :if filereadable(s:KIV_kandicfilepath)
+            :for s:kandicfileline in readfile(s:KIV_kandicfilepath)
+                :if stridx(s:kandicfileline,"\t") >= 0
+                    let s:kandiclinelist = split(s:kandicfileline,"\t")
+                    let s:KIV_kandic[s:kandiclinelist[0]] = join(s:kandiclinelist,"\t")
+                :endif
+            :endfor
+        :endif
+    :endif
     call KIVpullmenu(0)
     call KIVpushmenu()
 endfunction
@@ -263,6 +274,17 @@ endfunction
 
 "フレーズ辞書文字列置換。
 function! KIVphrase()
+    :if  len(s:KIV_kanphrase) == 0
+        let s:KIV_kanphrasefilepath = s:KIV_scriptdir . "/KIVphrase.tsf"
+        :if filereadable(s:KIV_kanphrasefilepath)
+            :for s:kanphrasefileline in readfile(s:KIV_kanphrasefilepath)
+                :if stridx(s:kanphrasefileline,"\t") >= 0
+                    let s:kanphraselist = split(s:kanphrasefileline,"\t")
+                    let s:KIV_kanphrase[s:kanphraselist[0]] = join(s:kanphraselist[1:],"\n")
+                :endif
+            :endfor
+        :endif
+    :endif
     let s:phrase = ""
     let s:phraseword = ""
     :if col("$")-1 <= col(".")-1+len(matchstr(getline('.'),'.',col('.')-1,1))
@@ -304,7 +326,6 @@ function! KIVphrase()
             :endwhile
         :endif
     :endif
-
 endfunction
 
 "メニューの撤去。
