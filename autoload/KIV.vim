@@ -66,33 +66,15 @@ function! KIVsetup(inputkey,findkey,hiraganakey,hiradakukey,katakanakey,katadaku
         :endfor
     :endif
     let s:KIV_kandic = {}
-"    let s:KIV_kandicfilepath = s:KIV_scriptdir . "/KIVdic.tsf"
-"    :if filereadable(s:KIV_kandicfilepath)
-"        :for s:kandicfileline in readfile(s:KIV_kandicfilepath)
-"            :if stridx(s:kandicfileline,"\t") >= 0
-"                let s:kandiclinelist = split(s:kandicfileline,"\t")
-"                let s:KIV_kandic[s:kandiclinelist[0]] = join(s:kandiclinelist,"\t")
-"            :endif
-"        :endfor
-"    :endif
     let s:KIV_kanphrase = {}
-"    let s:KIV_kanphrasefilepath = s:KIV_scriptdir . "/KIVphrase.tsf"
-"    :if filereadable(s:KIV_kanphrasefilepath)
-"        :for s:kanphrasefileline in readfile(s:KIV_kanphrasefilepath)
-"            :if stridx(s:kanphrasefileline,"\t") >= 0
-"                let s:kanphraselist = split(s:kanphrasefileline,"\t")
-"                let s:KIV_kanphrase[s:kanphraselist[0]] = join(s:kanphraselist[1:],"\n")
-"            :endif
-"        :endfor
-"    :endif
     map <silent> <Space><Space> a
     vmap <silent> <Space><Space> <Esc>
     imap <silent> <Space><Space> <Esc>
     imap <silent> <Space><Enter> <C-V><Space>
     imap <silent> <Space><S-Enter> <C-V>　
     imap <silent> <S-Space> <C-o>?<Enter>
-    imap <silent> <Space><BS>  <C-o><Plug>(KIVphrase)
-    noremap <Plug>(KIVphrase) :call KIVphrase()<Enter>
+    imap <silent> <Space><BS>  <C-o><Plug>(KIVreplace)
+    noremap <Plug>(KIVreplace) :call KIVreplace()<Enter>
     execute "nmap <silent> <Space><S-Space> <Plug>(KIVdic" . s:KIV_dickeydef . ")a"
     execute "imap <silent> <Space><S-Space> <C-o><Plug>(KIVdic" . s:KIV_dickeydef . ")"
     execute "noremap <Plug>(KIVdic" . s:KIV_dickeydef . ") :call KIVdic('" . s:KIV_dickeydef. "')<Enter>"
@@ -104,7 +86,6 @@ function! KIVsetup(inputkey,findkey,hiraganakey,hiradakukey,katakanakey,katadaku
     :for s:inputkey in range(len(s:KIV_kanmapkeysY))
         execute "noremap <Plug>(KIVmap" . s:KIV_kanmapkeysY[s:inputkey] . ") :call KIVmap('" . s:KIV_kanmapkeysY[s:inputkey] . "')<Enter>"
     :endfor
-    execute "noremap <Plug>(KIVchar) :call KIVhelp('KIVdic.tsf')<Enter>"
     call KIVpullmenu(1)
     let s:KIV_menuid = 10000
     let s:KIV_menumap = "【&Kanji" . "(&K)"
@@ -121,7 +102,10 @@ function! KIVsetup(inputkey,findkey,hiraganakey,hiradakukey,katakanakey,katadaku
     execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".70 " . s:KIV_menuhelp . ".-sep_dicfle- :"
     execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".71 " . s:KIV_menuhelp . ".漢直鍵盤「KIVmap\\.tsf」を開く(&M) <Plug>(KIVkanmap)"
     execute "noremap <Plug>(KIVkanmap) :call KIVhelp('KIVmap.tsf')<Enter>"
-    execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".72 " . s:KIV_menuhelp . ".単漢字辞書「KIVdic\\.tsf」を開く(&T) <Plug>(KIVchar)"
+    execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".72 " . s:KIV_menuhelp . ".単漢字辞書「KIVdic\\.tsf」を開く(&T) <Plug>(KIVdic)"
+    execute "noremap <Plug>(KIVdic) :call KIVhelp('KIVdic.tsf')<Enter>"
+    execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".72 " . s:KIV_menuhelp . ".フレーズ辞書「KIVphrase\\.tsf」を開く(&T) <Plug>(KIVphrase)"
+    execute "noremap <Plug>(KIVphrase) :call KIVhelp('KIVphrase.tsf')<Enter>"
     execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".75 " . s:KIV_menuhelp . ".KanjiInputVim本体「KIV\\.vim」を開く(&V) <Plug>(KIVsource)"
     execute "noremap <Plug>(KIVsource) :call KIVhelp('KIV.tsf')<Enter>"
     execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".80 " . s:KIV_menuhelp . ".-sep_dic- :"
@@ -273,7 +257,7 @@ function! KIVpoke(KIV_keyX)
 endfunction
 
 "フレーズ辞書文字列置換。
-function! KIVphrase()
+function! KIVreplace()
     :if  len(s:KIV_kanphrase) == 0
         let s:KIV_kanphrasefilepath = s:KIV_scriptdir . "/KIVphrase.tsf"
         :if filereadable(s:KIV_kanphrasefilepath)
