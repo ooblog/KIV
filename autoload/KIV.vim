@@ -36,6 +36,7 @@ function! KIVsetup(inputkey,findkey,hiraganakey,hiradakukey,katakanakey,katadaku
     let s:KIV_mapkey = s:KIV_hiraganakey
     let s:KIV_mapkeyid = index(s:KIV_kanmapkeysY,s:KIV_mapkey)
     let s:KIV_mapkeyidbuf = s:KIV_mapkeyid
+    let s:KIV_mapkeyidbuf = -1
     let s:KIV_dickeydefset = ['英','名','異','簡','繁','越','地','逆','非','代','俗','顔','照','訓','音','送','熙','活','漫','筆','幅']
     let s:KIV_dickeydef = '＊'
     let s:KIV_dickey = s:KIV_dickeydef
@@ -149,7 +150,11 @@ function! KIVpushmenu()
         execute "nmap <silent> <Space>" . s:KIV_inputkeys[s:inputkey] . " <Plug>(KIVmap" . s:mapKchar . ")a"
         execute "imap <silent> <Space>" . s:KIV_inputkeys[s:inputkey] . " <C-o><Plug>(KIVmap" . s:mapKchar . ")"
         execute "imenu  <silent> " . s:KIV_menudicid . "." . (s:inputkey+10) . " " . s:KIV_menudic . ".&" . escape(s:KIV_inputkeys[s:inputkey],s:KIV_menuESCs) . "\\" . escape(substitute(s:dicchar,"&","&&","g"),s:KIV_menuESCs) . " " . s:KIV_inputkeys[s:inputkey]
-        execute "imap <silent> " . s:KIV_inputkeys[s:inputkey] . KIVimapunicode(s:dicchar)
+
+"        execute "imap <silent> " . s:KIV_inputkeys[s:inputkey] . KIVimapunicode(s:dicchar)
+        execute "imap <silent> " . s:KIV_inputkeys[s:inputkey] . " <C-o><Plug>(KIVinput" . s:KIV_kanmapkeysX[s:inputkey] . ")"
+        execute "noremap <Plug>(KIVinput" . s:KIV_kanmapkeysX[s:inputkey] . ") :call KIVinput('" . s:KIV_kanmapkeysX[s:inputkey] . "')<Enter>"
+
         execute "imap <silent> " . s:KIV_findkeys[s:inputkey] . " <C-o>/" . escape(substitute(s:dicchar,"|","<bar>","g"),s:KIV_menuESCs) . "<Enter>"
         execute "imap <silent> <Space><Esc>" . s:KIV_inputkeys[s:inputkey] . " <C-o><Plug>(KIVpoke" . s:KIV_kanmapkeysX[s:inputkey] . ")"
     :endfor
@@ -235,6 +240,20 @@ function! KIVimapunicode(KIV_mapC)
     :endfor
     :return s:KIV_mapU
 endfunction
+
+"imap
+function! KIVinput(KIV_keyX)
+    echo a:KIV_keyX
+    let s:KIV_keyXid = index(s:KIV_kanmapkeysX,a:KIV_keyX)
+        :if s:KIV_keyXid >= 0
+        let s:tmp = @a
+        let @a = s:KIV_kanmap[s:KIV_mapkey][s:KIV_keyXid]
+        execute ':normal "ap'
+        let @a = s:tmp
+        let s:KIV_mapkeyidbuf = -1
+    :endif
+endfunction
+
 
 "鍵盤上書保存。
 function! KIVpoke(KIV_keyX)

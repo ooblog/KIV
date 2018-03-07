@@ -3,7 +3,7 @@
 
 ## KIV超ザックリ説明。
 
-漢字直接入力(漢直)Vimプラグインです。 一応文字列置換機能も搭載。 
+漢字直接入力(漢直)Vimプラグインです。 一応文字列置換機能も搭載。   
 独自のかな配列を用いる事で、USキーボード買ったのに設定はJISキーボード状態の様な混在環境(括弧の位置などがUSキーボードとJISキーボードでズレます)でも日本語入力できます。  
 
 &#35;!	1あ 2い 3う 4え 5お 6か 7き 8く 9け 0こ -〜  
@@ -62,22 +62,22 @@ KIVはOSのIMEを経由しないのでモード切替時の全角半角キーを
 ムツヨコハマ→陸奥横浜  
 
 
-## 操作一覧予定表(ToDo)。
+## 操作一覧。
 
-☑&lt;Space&gt;&lt;Space&gt;	Vimの挿入モード通常モード切替  
-☑&lt;Space&gt;&lt;Enter&gt;	半角スペース入力  
-☑&lt;Space&gt;&lt;S-Enter&gt;	全角スペース入力  
-☑a-z	漢字入力([漢直鍵盤KIVmap.tsf](https://github.com/ooblog/KIV/blob/master/autoload/KIVmap.tsf "KIV/KIVmap.tsf at master · ooblog/KIV"))/字引項目があれば字引漢直([単漢字辞書KIVdic.tsf](https://github.com/ooblog/KIV/blob/master/autoload/KIVdic.tsf "KIV/KIVdic.tsf at master · ooblog/KIV"))  
-☑A-Z	一文字検索下方向(&lt;C-o&gt;/)  
-☑&lt;S-Space&gt;	一文字検索上方向(&lt;C-o&gt;?)  
-☑&lt;Space&gt;a-z	挿入モード/ひらカタ鍵盤変更  
-☑&lt;Space&gt;&lt;Tab&gt;	大小アルファベット鍵盤変更  
-☑&lt;Space&gt;:	清濁ひらがな鍵盤変更  
-☑&lt;Space&gt;;	清濁カタカナ鍵盤変更  
-☑&lt;Space&gt;A-Z	字引項目の変更  
-☑&lt;Space&gt;&lt;S-Space&gt;	字引項目の解除  
-☑&lt;Space&gt;&lt;BS&gt;	 文字列置換([フレーズ辞書KIVphrase.tsf](https://github.com/ooblog/KIV/blob/master/autoload/KIVphrase.tsf "KIV/KIVphrase.tsf at master · ooblog/KIV"))  
-☑&lt;Space&gt;&lt;Esc&gt;a-z		漢直鍵盤書き換え  
+&lt;Space&gt;&lt;Space&gt;	Vimの挿入モード通常モード切替  
+&lt;Space&gt;&lt;Enter&gt;	半角スペース入力  
+&lt;Space&gt;&lt;S-Enter&gt;	全角スペース入力  
+a-z	漢字入力([漢直鍵盤KIVmap.tsf](https://github.com/ooblog/KIV/blob/master/autoload/KIVmap.tsf "KIV/KIVmap.tsf at master · ooblog/KIV"))/字引項目があれば字引漢直([単漢字辞書KIVdic.tsf](https://github.com/ooblog/KIV/blob/master/autoload/KIVdic.tsf "KIV/KIVdic.tsf at master · ooblog/KIV"))  
+A-Z	一文字検索下方向(&lt;C-o&gt;/)  
+&lt;S-Space&gt;	一文字検索上方向(&lt;C-o&gt;?)  
+&lt;Space&gt;a-z	挿入モード/ひらカタ鍵盤変更  
+&lt;Space&gt;&lt;Tab&gt;	大小アルファベット鍵盤変更  
+&lt;Space&gt;:	清濁ひらがな鍵盤変更  
+&lt;Space&gt;;	清濁カタカナ鍵盤変更  
+&lt;Space&gt;A-Z	字引項目の変更  
+&lt;Space&gt;&lt;S-Space&gt;	字引項目の解除  
+&lt;Space&gt;&lt;BS&gt;	 文字列置換([フレーズ辞書KIVphrase.tsf](https://github.com/ooblog/KIV/blob/master/autoload/KIVphrase.tsf "KIV/KIVphrase.tsf at master · ooblog/KIV"))  
+&lt;Space&gt;&lt;Esc&gt;a-z		漢直鍵盤書き換え  
 
 
 ### 字引項目一覧(配置はブランチ毎に変わる場合があります)。
@@ -115,6 +115,7 @@ KIVはOSのIMEを経由しないのでモード切替時の全角半角キーを
 宇宙	3ぅui  
 男女	5おpa  
 漢字	wじ&#91;&#93;  
+賃貸	uち&#91;&#93;  
 味噌	xミty  
 飛翔	sひhj  
 挨拶	1ア23  

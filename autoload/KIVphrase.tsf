@@ -1,5 +1,15 @@
 TSF_Tab-Separated-Forth:	3.	#!TSF_grammar.	#!TSF_Value.
-Kanphrase	Q.この[Kanphrase.tsv]は何ですか。 A.漢直入力&漢直検索「KIV.vim」用の文字列置換フレーズです。#! -- Copyright (c) 2016-2018 ooblog -- #! License: MIT　https://github.com/ooblog/KIV/blob/master/LICENSE
+Kanphrase	Q.この[Kanphrase.tsv]は何ですか。 A.漢字直接入力＆漢字直接検索「KIV.vim」用の文字列置換フレーズです。#! -- Copyright (c) 2016-2018 ooblog -- #! License: MIT　https://github.com/ooblog/KIV/blob/master/LICENSE
+かんちょく	漢直
+かんじ	漢字
+ちょくせつ	直接
+にゅうりょく	入力
+ちょくせつ入力	直接入力
+かんじ直接入力	漢字直接入力
+けんさく	検索
+ちょくせつ検索	直接検索
+かんじ直接検索	漢字直接検索
+コピーライト	©
 おおぶろぐ	ooblog
 お〜ぶろぐ	ooblog
 おーぶろぐ	ooblog
@@ -13,7 +23,8 @@ Kanphrase	Q.この[Kanphrase.tsv]は何ですか。 A.漢直入力&漢直検索�
 ももいしるき	桃井シルキ
 はくばくれい	白馬クレイ
 ふゆきあけみ	深雪アケミ
-かんちょく	漢直
+もじ	文字
+もじ入力	文字入力
 ひらがな	平仮名
 平仮名	あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん
 いろは	いろはにほへとちりぬるをわかよたれそつねならむうゐのおくやまけふこえてあさきゆめみしゑひもせす
@@ -342,7 +353,7 @@ Satoshi Nakamoto	サトシ・ナカモト
 さんだんろんぽう	三段論法
 じゅうぎゅうず	十牛図
 よじじゅくご	四字熟語
-
+ふようふきゅう	不要不急
 
 
 
