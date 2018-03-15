@@ -112,13 +112,16 @@ function! KIVsetup(inputkey,findkey,hiraganakey,hiradakukey,katakanakey,katadaku
     execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".80 " . s:KIV_menuhelp . ".-sep_dic- :"
     let s:KIV_dickeybuf = ""
     execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".119 " . s:KIV_menuhelp . ".-sep_dummygtk3- :"
-    execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".120 " . s:KIV_menuhelp . ".-sep_filer- :"
-    execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".121 " . s:KIV_menuhelp . ".JISキーボード" . ((s:KIV_inputkey=='[を')&&(s:KIV_findkey==']ん')?"✓":"で再開") . "(&J) <Plug>(KIVsetupUS)"
+    execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".120 " . s:KIV_menuhelp . ".-sep_stroke- :"
+    execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".125 " . s:KIV_menuhelp . ".ストローク確認(&S) <Plug>(KIVstroke)"
+    execute "noremap <Plug>(KIVstroke) :call KIVstroke()<Enter>"
+    execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".130 " . s:KIV_menuhelp . ".-sep_filer- :"
+    execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".131 " . s:KIV_menuhelp . ".JISキーボード" . ((s:KIV_inputkey=='[を')&&(s:KIV_findkey==']ん')?"✓":"で再開") . "(&J) <Plug>(KIVsetupUS)"
     execute "noremap <Plug>(KIVsetupUS) :call KIVsetup('[を',']ん','-〜','-ゔ','-ー','-ヴ')<Enter>"
-    execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".122 " . s:KIV_menuhelp . ".USキーボード" . ((s:KIV_inputkey=='[、')&&(s:KIV_findkey==']。')?"✓":"で再開") . "(&U) <Plug>(KIVsetupJIS)"
+    execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".132 " . s:KIV_menuhelp . ".USキーボード" . ((s:KIV_inputkey=='[、')&&(s:KIV_findkey==']。')?"✓":"で再開") . "(&U) <Plug>(KIVsetupJIS)"
     execute "noremap <Plug>(KIVsetupJIS) :call KIVsetup('[、',']。','-〜','-ゔ','-ー','-ヴ')<Enter>"
-    execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".125 " . s:KIV_menuhelp . ".-sep_quit- :"
-    execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".128 " . s:KIV_menuhelp . ".KIV終了(&Q) <Plug>(KIVexit)"
+    execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".135 " . s:KIV_menuhelp . ".-sep_quit- :"
+    execute "amenu  <silent> " . (s:KIV_menuhelpid) . ".138 " . s:KIV_menuhelp . ".KIV終了(&Q) <Plug>(KIVexit)"
     execute "noremap <Plug>(KIVexit) :call KIVexit()<Enter>"
     call KIVpushmenu()
 endfunction
@@ -151,9 +154,9 @@ function! KIVpushmenu()
         execute "imap <silent> <Space>" . s:KIV_inputkeys[s:inputkey] . " <C-o><Plug>(KIVmap" . s:mapKchar . ")"
         execute "imenu  <silent> " . s:KIV_menudicid . "." . (s:inputkey+10) . " " . s:KIV_menudic . ".&" . escape(s:KIV_inputkeys[s:inputkey],s:KIV_menuESCs) . "\\" . escape(substitute(s:dicchar,"&","&&","g"),s:KIV_menuESCs) . " " . s:KIV_inputkeys[s:inputkey]
 
-"        execute "imap <silent> " . s:KIV_inputkeys[s:inputkey] . KIVimapunicode(s:dicchar)
-        execute "imap <silent> " . s:KIV_inputkeys[s:inputkey] . " <C-o><Plug>(KIVinput" . s:KIV_kanmapkeysX[s:inputkey] . ")"
-        execute "noremap <Plug>(KIVinput" . s:KIV_kanmapkeysX[s:inputkey] . ") :call KIVinput('" . s:KIV_kanmapkeysX[s:inputkey] . "')<Enter>"
+        execute "imap <silent> " . s:KIV_inputkeys[s:inputkey] . KIVimapunicode(s:dicchar)
+"        execute "imap <silent> " . s:KIV_inputkeys[s:inputkey] . " <C-o><Plug>(KIVinput" . s:KIV_kanmapkeysX[s:inputkey] . ")"
+"        execute "noremap <Plug>(KIVinput" . s:KIV_kanmapkeysX[s:inputkey] . ") :call KIVinput('" . s:KIV_kanmapkeysX[s:inputkey] . "')<Enter>"
 
         execute "imap <silent> " . s:KIV_findkeys[s:inputkey] . " <C-o>/" . escape(substitute(s:dicchar,"|","<bar>","g"),s:KIV_menuESCs) . "<Enter>"
         execute "imap <silent> <Space><Esc>" . s:KIV_inputkeys[s:inputkey] . " <C-o><Plug>(KIVpoke" . s:KIV_kanmapkeysX[s:inputkey] . ")"
@@ -243,15 +246,36 @@ endfunction
 
 "imap
 function! KIVinput(KIV_keyX)
-    echo a:KIV_keyX
     let s:KIV_keyXid = index(s:KIV_kanmapkeysX,a:KIV_keyX)
         :if s:KIV_keyXid >= 0
         let s:tmp = @a
         let @a = s:KIV_kanmap[s:KIV_mapkey][s:KIV_keyXid]
-        execute ':normal "ap'
+        execute ':normal "aP'
         let @a = s:tmp
         let s:KIV_mapkeyidbuf = -1
     :endif
+endfunction
+
+"ストローク確認。
+function! KIVstroke()
+    let s:inputstrokebase = input("strokebase : ")
+    echo " "
+    let s:inputstroke = ""
+    let s:strokebuf = ""
+    :for s:strokebase in split(s:inputstrokebase, '\zs')
+        :for s:strokekey in s:KIV_kanmapkeysY
+            let s:KIV_keyXid = index(s:KIV_kanmap[s:strokekey],s:strokebase)
+            :if s:KIV_keyXid >= 0
+                :if s:strokebuf != s:strokekey
+                    let s:inputstroke = s:inputstroke . s:strokekey
+                    let s:strokebuf = s:strokekey
+                :endif
+                let s:inputstroke = s:inputstroke . s:KIV_inputkeys[s:KIV_keyXid]
+               :break
+            :endif
+        :endfor
+    :endfor
+    echo s:inputstroke
 endfunction
 
 

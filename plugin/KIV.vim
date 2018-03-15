@@ -5,10 +5,10 @@ if exists('g:loaded_KIV')
 endif
 let g:loaded_KIV = 1
 
-call KIV#KIV#KIVboot()
+"call KIV#KIV#KIVboot()
 command KIV :call KIV#KIV#KIVboot()
 
 finish
 
 "#! -- Copyright (c) 2016-2018 ooblog --
-"#! License: MIT　https://github.com/ooblog/TSF3KEV/blob/master/LICENSE
+"#! License: MIT　https://github.com/ooblog/KIV/blob/master/LICENSE
